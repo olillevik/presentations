@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI-Augmented Development: Lessons from the Trenches</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" id="theme">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+  :root {
+    --r-background-color: #0a0a0f;
+    --r-main-color: #e2e2e8;
+    --r-heading-color: #ffffff;
+    --r-link-color: #6ea8fe;
+    --r-selection-background-color: #3b82f6;
+    --accent: #6ea8fe;
+    --accent-warm: #f59e0b;
+    --accent-green: #34d399;
+    --accent-dim: #3b5998;
+    --surface: rgba(255, 255, 255, 0.04);
+    --surface-border: rgba(255, 255, 255, 0.08);
+  }
+
+  .reveal {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 300;
+    font-size: 32px;
+  }
+
+  .reveal h1, .reveal h2, .reveal h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    text-transform: none;
+    line-height: 1.2;
+  }
+
+  .reveal h1 { font-size: 2.4em; font-weight: 700; }
+  .reveal h2 { font-size: 1.6em; color: var(--accent); }
+  .reveal h3 { font-size: 1.1em; color: var(--accent); font-weight: 400; }
+
+  .reveal p { line-height: 1.6; }
+
+  .reveal .subtitle {
+    color: #888;
+    font-size: 0.7em;
+    margin-top: 0.5em;
+    font-weight: 300;
+  }
+
+  .reveal .fragment-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .reveal .fragment-list li {
+    padding: 0.4em 0;
+    border-bottom: 1px solid var(--surface-border);
+    font-size: 0.85em;
+  }
+
+  .reveal .fragment-list li:last-child {
+    border-bottom: none;
+  }
+
+  .reveal .highlight-word {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .reveal .highlight-warm {
+    color: var(--accent-warm);
+    font-weight: 600;
+  }
+
+  .reveal .highlight-green {
+    color: var(--accent-green);
+    font-weight: 600;
+  }
+
+  .reveal .dim {
+    color: #aaa;
+  }
+
+  .reveal .card {
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    border-radius: 12px;
+    padding: 1.2em 1.5em;
+    margin: 0.5em 0;
+    text-align: left;
+  }
+
+  .reveal .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    margin-top: 1em;
+  }
+
+  .reveal .card-grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.8em;
+    margin-top: 1em;
+  }
+
+  .reveal .card h3 {
+    margin: 0 0 0.3em 0;
+    font-size: 0.9em;
+  }
+
+  .reveal .card p {
+    margin: 0;
+    font-size: 0.8em;
+    color: #bbb;
+    line-height: 1.4;
+  }
+
+  .reveal .flow-arrow {
+    font-size: 1.5em;
+    color: var(--accent-dim);
+    margin: 0 0.2em;
+  }
+
+  .reveal .flow-step {
+    display: inline-block;
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    border-radius: 8px;
+    padding: 0.3em 0.6em;
+    font-size: 0.7em;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .reveal .section-label {
+    font-size: 0.5em;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #777;
+    margin-bottom: 0.5em;
+  }
+
+  .reveal .versus {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1em;
+    align-items: center;
+    margin-top: 1em;
+  }
+
+  .reveal .versus-divider {
+    font-size: 1.5em;
+    color: #444;
+    font-weight: 700;
+  }
+
+  .reveal .takeaway-box {
+    background: rgba(110, 168, 254, 0.08);
+    border: 1px solid rgba(110, 168, 254, 0.2);
+    border-radius: 12px;
+    padding: 1.5em;
+    margin-top: 1em;
+    text-align: center;
+    font-size: 1.1em;
+  }
+
+  .reveal .inspire-box {
+    background: rgba(52, 211, 153, 0.06);
+    border: 1px solid rgba(52, 211, 153, 0.15);
+    border-radius: 12px;
+    padding: 1.5em 2em;
+    margin-top: 1em;
+    text-align: left;
+    font-size: 0.85em;
+    line-height: 1.7;
+  }
+
+  .reveal .mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85em;
+  }
+
+  .reveal section {
+    padding: 0 40px;
+  }
+
+  .reveal .speaker-controls-notes {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- ============================================ -->
+<!-- ACT 1: THE SHIFT -->
+<!-- ============================================ -->
+<section>
+  <h1>AI-Augmented<br>Development</h1>
+  <p class="subtitle">Lessons from the Trenches</p>
+  <aside class="notes">
+    Welcome. Developer to developer — not a manager, not a salesman. What worked, what didn't, where this is going. Questions anytime — interrupt or save them. Let me start with a story.
+  </aside>
+</section>
+
+<section>
+  <div class="section-label">The Shift</div>
+  <h2>A race condition in CI</h2>
+  <br>
+  <p style="font-size: 0.8em;">Builds took 20+ minutes.<br>Failed sporadically. Nobody knew why.</p>
+  <br>
+  <p style="font-size: 0.8em;">A senior dev dug into it.<br>Couldn't find it. Said it wasn't worth the time.</p>
+  <br>
+  <p style="font-size: 0.85em;">I fed the code to an LLM.<br><span class="highlight-word">Found in a minute.</span></p>
+  <aside class="notes">
+    A little over a year ago. Senior dev — smart guy, wrote that code — couldn't find it. I fed it to an LLM. Race condition in test setup. Found in a minute. Before agents, before any tooling. Just a chat window and a paste.
+  </aside>
+</section>
+
+<section>
+  <h2>That was a year ago</h2>
+  <br>
+  <p style="font-size: 1.1em;">Today, I don't write code by hand anymore.</p>
+  <aside class="notes">
+    A chat window and a paste. No agents, no tooling. A year later — I don't write code by hand anymore. Not always faster, not always perfect. But the trend is clear.
+  </aside>
+</section>
+
+<section>
+  <h2>This isn't autocomplete anymore</h2>
+  <br>
+  <div class="versus">
+    <div style="text-align: center;">
+      <p class="dim" style="font-size: 0.7em;">Then</p>
+      <p style="font-size: 1em;">Suggest the next line</p>
+    </div>
+    <div class="versus-divider">&rarr;</div>
+    <div style="text-align: center;">
+      <p class="dim" style="font-size: 0.7em;">Now</p>
+      <p style="font-size: 1em;">Plan, execute, iterate</p>
+    </div>
+  </div>
+  <aside class="notes">
+    If your mental model is Copilot suggesting the next line — outdated. We use Claude Code and OpenCode — these are agents. They read code, edit files, run tests, check CI, iterate on their own work. You give them a task and they figure out how to do it. Can demo OpenCode after the talk.
+  </aside>
+</section>
+
+<section>
+  <h2>Three things converging</h2>
+  <div class="card-grid-3">
+    <div class="card">
+      <h3>Better models</h3>
+      <p>Spot a bug &rarr; Navigate a repo &rarr; Resolve tickets end-to-end<br>Each step incremental. The compound effect isn't.</p>
+    </div>
+    <div class="card">
+      <h3>Better tooling</h3>
+      <p>Claude Code, OpenCode, Cursor<br>Agents, not chatbots</p>
+    </div>
+    <div class="card">
+      <h3>Better practices</h3>
+      <p>We've learned how to work<br>with these tools effectively</p>
+    </div>
+  </div>
+  <br>
+  <p style="font-size: 0.75em;">
+    <span class="highlight-word">The gains stack</span> — better models make good practices pay off more, and vice versa
+  </p>
+  <aside class="notes">
+    Models: Opus 4.1 August, 4.5 November, 4.6 February. Each step incremental — 4.1 to 4.6 is a significant leap. Six months. Tooling: agents that execute multi-step tasks. Practices: prompting, project setup, knowing when to use AI — skills that take time. A better model doesn't improve your skills — but it rewards good skills more. Better tooling surfaces more of both.
+  </aside>
+</section>
+
+<!-- ============================================ -->
+<!-- ACT 2: HOW WE WORK -->
+<!-- ============================================ -->
+<section>
+  <div class="section-label">How We Work</div>
+  <h2>Context is everything</h2>
+  <br>
+  <p>The more the AI can see,<br>the better it performs</p>
+  <br>
+  <p style="font-size: 0.75em;">But context is also <span class="highlight-warm">finite</span></p>
+  <p class="dim" style="font-size: 0.75em;">The AI has a limited window. What's in that window<br>determines the quality of the output.</p>
+  <aside class="notes">
+    Most important lesson. AI is only as good as what it can see. But context is finite — working memory. Too much in and the output gets worse. Be smart about what's loaded when.
+  </aside>
+</section>
+
+<section>
+  <h2>Give it access to everything</h2>
+  <ul class="fragment-list">
+    <li><span class="highlight-word">Code</span> — repos, PRs, code search across repos</li>
+    <li><span class="highlight-word">Tickets</span> — the work to be done, requirements, context</li>
+    <li><span class="highlight-word">CI/CD</span> — build output, deployment status</li>
+    <li><span class="highlight-word">Logs &amp; monitoring</span> — what's happening in production</li>
+    <li><span class="highlight-word">Databases</span> — schema, data context</li>
+    <li><span class="highlight-word">Confluence</span> — documentation, decisions, architecture</li>
+  </ul>
+  <aside class="notes">
+    AI can access almost everything a developer can. Turning point was ticket access — before that, every task started with me explaining what to build. After: "we're solving ticket-1234" and it reads the requirements itself. Logs, metrics, CI, database. Each integration improves the chance of a successful outcome.
+  </aside>
+</section>
+
+<section>
+  <h2>...with eyes open</h2>
+  <div class="card-grid">
+    <div class="card">
+      <h3 style="color: var(--accent-warm);">Read vs. write</h3>
+      <p>Can it see the database? Good.<br>Can it drop tables? Think twice.</p>
+    </div>
+    <div class="card">
+      <h3 style="color: var(--accent-warm);">Sandboxing</h3>
+      <p>Separate contexts by capability.<br>The one reading prod logs shouldn't<br>also be fetching from the internet.</p>
+    </div>
+  </div>
+  <br>
+  <p class="dim" style="font-size: 0.7em;">Security is a big topic — secrets, data leakage, prompt injection, access control.<br>Calibrate to your project's risk appetite. Start the conversation early.</p>
+  <aside class="notes">
+    "Access to everything" doesn't mean admin credentials and hope for the best. Least privilege — same principle as for humans. Security is a big topic — more than one slide. Be intentional. Calibrate to risk appetite. Internal PoC is different from a payment system.
+  </aside>
+</section>
+
+<section>
+  <h2>Make it the hub</h2>
+  <br>
+  <div style="font-size: 0.75em; line-height: 2.5;">
+    <span class="flow-step">Link to ticket</span>
+    <span class="flow-arrow">&rarr;</span>
+    <span class="flow-step">Clone &amp; branch</span>
+    <span class="flow-arrow">&rarr;</span>
+    <span class="flow-step">Code &amp; tests</span>
+    <span class="flow-arrow">&rarr;</span>
+    <span class="flow-step">Commit &amp; PR</span>
+    <span class="flow-arrow">&rarr;</span>
+    <span class="flow-step">Review</span>
+  </div>
+  <br>
+  <p style="font-size: 0.75em;"><span class="dim">I say:</span> "We're solving <span class="mono highlight-word">PROJ-1234</span>"</p>
+  <p style="font-size: 0.75em;">It figures out the rest.</p>
+  <aside class="notes">
+    My actual workflow. "We're solving this." It reads the ticket, branches, writes code and tests, commits, creates a PR. All instructed — branch naming, commit format, PR template. Not every time perfect — sometimes several rounds. But often, ticket to PR in one go.
+  </aside>
+</section>
+
+<section>
+  <h2>Managing context</h2>
+  <br>
+  <div class="versus">
+    <div class="card" style="text-align: center;">
+      <h3>Always loaded</h3>
+      <p>Project identity, architecture, conventions.<br><span class="highlight-word">Keep it lean.</span></p>
+    </div>
+    <div class="versus-divider">vs</div>
+    <div class="card" style="text-align: center;">
+      <h3>Loaded on demand</h3>
+      <p><span class="mono">/git-commit</span> &middot; <span class="mono">/query-logs</span> &middot; <span class="mono">/check-ticket</span><br><span class="mono">/wiki</span> &middot; <span class="mono">/review</span></p>
+    </div>
+  </div>
+  <br>
+  <p class="dim" style="font-size: 0.75em;">Many mechanisms for layering this. The principle: protect the context window.</p>
+  <aside class="notes">
+    Always loaded: project identity, architecture, conventions. Keep it lean. On demand: skills for git, logs, tickets, wiki, review. Only in context when needed. Shareable — new dev joined, installed our commit skill, first commit matched convention perfectly. Zero onboarding for that.
+  </aside>
+</section>
+
+<!-- ============================================ -->
+<!-- ACT 3: THE NEW REALITY -->
+<!-- ============================================ -->
+<section>
+  <div class="section-label">The New Reality</div>
+  <h2>Where AI shines today</h2>
+  <div class="card-grid">
+    <div class="card">
+      <h3>Everyday feature code</h3>
+      <p>Not just boilerplate — real bread-and-butter code. Give it structure and it delivers.</p>
+    </div>
+    <div class="card">
+      <h3>Refactoring</h3>
+      <p>Rename, restructure, migrate — across files, across modules</p>
+    </div>
+    <div class="card">
+      <h3>Understanding &amp; debugging</h3>
+      <p>"Explain this module." Logs + code + context = fast root cause.</p>
+    </div>
+    <div class="card">
+      <h3>Test generation</h3>
+      <p>Edge cases you wouldn't think of. Surprisingly thorough.</p>
+    </div>
+  </div>
+  <aside class="notes">
+    [~20 min] What does context buy us? Everyday feature code — not just boilerplate. Endpoints, services, UI components. Tell it your patterns and it delivers. Refactoring across files, understanding unfamiliar code, debugging with logs, test generation. Code review separately.
+  </aside>
+</section>
+
+<section>
+  <h2>Where humans still matter</h2>
+  <ul class="fragment-list">
+    <li><span class="highlight-warm">Architecture</span> — system-level decisions, tradeoffs</li>
+    <li><span class="highlight-warm">Security</span> — threat modeling, trust boundaries</li>
+    <li><span class="highlight-warm">Novel problem-solving</span> — things with no good precedent</li>
+    <li><span class="highlight-warm">Judgment calls</span> — "should we build this at all?"</li>
+    <li><span class="highlight-warm">Stakeholder communication</span> — understanding the real need</li>
+  </ul>
+  <br>
+  <p class="dim" style="font-size: 0.75em;">Today. Some of these boundaries will shift as models improve.</p>
+  <aside class="notes">
+    Where AI falls short today. Architecture needs domain understanding. Security needs human judgment. Novel problems — no precedent, it struggles. "Should we build this?" is not an AI question. Said "today" — boundaries will shift.
+  </aside>
+</section>
+
+<section>
+  <h2>The workflow shift</h2>
+  <br>
+  <div class="versus">
+    <div style="text-align: center;">
+      <p class="dim" style="font-size: 0.7em;">Before</p>
+      <p style="font-size: 1.1em;">Write code</p>
+    </div>
+    <div class="versus-divider">&rarr;</div>
+    <div style="text-align: center;">
+      <p class="dim" style="font-size: 0.7em;">Now</p>
+      <p style="font-size: 1.1em;"><span class="highlight-word">Think</span>, <span class="highlight-word">direct</span>, <span class="highlight-word">review</span></p>
+    </div>
+  </div>
+  <br>
+  <p style="font-size: 0.8em;">Discuss. Plan. Instruct.<br>Let the AI execute.</p>
+  <p style="font-size: 0.75em;">Less typing. More <span class="highlight-word">thinking</span>.</p>
+  <p class="dim" style="font-size: 0.75em;">And sometimes, more <span class="highlight-warm">humility</span>.</p>
+  <aside class="notes">
+    Less typing, more thinking. Not always faster — sometimes I spend 20 minutes directing what I could have typed in 10. And sometimes worse: burned a full day trying to get AI to migrate .NET Framework to .NET Core. Threw it away. It fails too. Knowing when to cut your losses is part of the skill.
+  </aside>
+</section>
+
+<section>
+  <h2>Design for the future</h2>
+  <br>
+  <div class="takeaway-box">
+    <p>Align your processes so that<br><span class="highlight-word" style="font-size: 1.3em;">better models automatically<br>improve the process</span></p>
+  </div>
+  <br>
+  <p class="dim" style="font-size: 0.7em;">If your code review runs through an AI skill,<br>every model upgrade improves your reviews. For free.</p>
+  <aside class="notes">
+    [PAUSE] Ask yourself: if a better model drops tomorrow, does this process automatically improve? Yes → set up right. No → leaving value on the table. Linting rules in a wiki humans read — no benefit from better models. Same rules in an AI review skill — free upgrade every time.
+  </aside>
+</section>
+
+<section>
+  <h2>Example: Code review</h2>
+  <div class="versus">
+    <div class="card">
+      <h3 style="color: var(--accent-warm);">Human reviewer</h3>
+      <p>Catches design issues, intent problems,<br>architectural concerns.<br>But has limited patience for<br>repetitive checks.</p>
+    </div>
+    <div class="versus-divider">+</div>
+    <div class="card">
+      <h3>AI reviewer</h3>
+      <p>Patient. Thorough.<br>Follows the checklist every time.<br>Conventions, error handling,<br>edge cases — never skips one.</p>
+    </div>
+  </div>
+  <p style="font-size: 0.75em; margin-top: 1em;">
+    Not either/or — <span class="highlight-word">both</span>. AI catches the systematic stuff.<br>Humans focus on design, intent, and judgment.
+  </p>
+  <aside class="notes">
+    AI review on every PR in CI. Humans catch design and intent issues. AI never drifts — same checklist every time. Not either/or — both. And when a better model drops, reviews get better. Change nothing. Free upgrade.
+  </aside>
+</section>
+
+<section>
+  <h2>A glimpse of the future</h2>
+  <br>
+  <div style="font-size: 0.7em; line-height: 2.5;">
+    <span class="flow-step">Ticket created</span>
+    <span class="flow-arrow">&rarr;</span>
+    <span class="flow-step">AI picks it up</span>
+    <span class="flow-arrow">&rarr;</span>
+    <span class="flow-step">Reads context</span>
+    <span class="flow-arrow">&rarr;</span>
+    <span class="flow-step">Code &amp; tests</span>
+    <span class="flow-arrow">&rarr;</span>
+    <span class="flow-step">Opens PR</span>
+  </div>
+  <br>
+  <p style="font-size: 0.8em;">We built this. We call it <span class="highlight-green">Tinker</span>.</p>
+  <p class="dim" style="font-size: 0.75em;">First PR it attempted? Merged without changes.</p>
+  <aside class="notes">
+    A team member scaffolded the idea with Claude Code and pitched it. Tinker watches for "AI ready" labels or @tinker mentions. First ticket I labeled — merged without changes. Easy task, sure. But automating easy tasks is a win. Smarter models will solve harder ones.
+  </aside>
+</section>
+
+<!-- ============================================ -->
+<!-- ACT 4: GETTING STARTED -->
+<!-- ============================================ -->
+<section>
+  <div class="section-label">Getting Started</div>
+  <h2>Start now</h2>
+  <br>
+  <p>Don't wait for the "right" tool</p>
+  <p>Don't wait for the "right" time</p>
+  <p>Don't wait for permission to start learning</p>
+  <br>
+  <p><span class="highlight-word">The learning curve is real</span></p>
+  <p class="dim" style="font-size: 0.75em;">You get measurably better at working with AI<br>over weeks and months. Start the clock now.</p>
+  <aside class="notes">
+    [~35 min] Learning curve is real. Difference between month one and month three was dramatic. Start the clock today. First step: install an AI coding tool, open your project, ask it to explain a module you didn't write. That's your Monday morning.
+  </aside>
+</section>
+
+<section>
+  <h2>Working with AI</h2>
+  <div class="versus" style="align-items: start;">
+    <div>
+      <h3 style="font-size: 0.8em; color: var(--accent); margin-bottom: 0.5em;">You</h3>
+      <ul class="fragment-list">
+        <li><span class="highlight-word">Be specific</span> — vague prompts, vague results</li>
+        <li><span class="highlight-word">Give context</span> — point at the right files, explain why</li>
+        <li><span class="highlight-word">Iterate</span> — first attempt is rarely perfect</li>
+        <li><span class="highlight-word">Review carefully</span> — always verify the output</li>
+      </ul>
+    </div>
+    <div style="width: 1px; background: var(--surface-border); align-self: stretch;"></div>
+    <div>
+      <h3 style="font-size: 0.8em; color: var(--accent); margin-bottom: 0.5em;">Your project</h3>
+      <ul class="fragment-list">
+        <li>Think about <span class="highlight-word">context layering</span> early</li>
+        <li>Build <span class="highlight-word">skills</span> for repeated tasks</li>
+        <li>Set up <span class="highlight-word">integrations</span> — tickets, CI, logs</li>
+        <li>Iterate on instructions — <span class="highlight-word">living documents</span></li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">
+    Two levels. You: be specific — "fix the bug" is bad, "the /api/orders endpoint returns 500 when cart is empty, look at OrderService.ts" is good. Iterate. Review carefully — output can look confident and be wrong. Project: context layering, skills for repeated tasks, integrations early. All living documents — keep improving.
+  </aside>
+</section>
+
+<section>
+  <h2>What your project needs</h2>
+  <ul class="fragment-list">
+    <li><span class="highlight-green">Budget for AI tooling</span> — this is not the place to save money</li>
+    <li><span class="highlight-green">Freedom to choose tools</span> — let the team decide what works</li>
+    <li><span class="highlight-green">Room to experiment</span> — some experiments won't pan out, and that's fine</li>
+    <li><span class="highlight-green">Frictionless access</span> — no approval forms, no usage caps</li>
+  </ul>
+  <br>
+  <p class="dim" style="font-size: 0.75em;">Advocate for these on your project.</p>
+  <aside class="notes">
+    Budget: cost of the tool is a fraction of the developer using it. Tool freedom: what works for one person might not work for another. Experimentation: a colleague spent $450 in two hours on an AI pipeline — called it "Gas Town." Worse results than Copilot. Team applauded the experiment. That's the culture you want. Friction kills adoption. [If governance pushback: "Design governance that enables. Approve tools, set a budget, review quarterly. Don't make people fill in forms."]
+  </aside>
+</section>
+
+<!-- ============================================ -->
+<!-- ACT 5: CLOSING -->
+<!-- ============================================ -->
+<section>
+  <h2>The future is uncertain</h2>
+  <br>
+  <div class="inspire-box">
+    <p>AI is changing the landscape fast.</p>
+    <p>We don't fully know what it will look like.</p>
+    <p style="margin-top: 0.8em;">But here's what we <em>do</em> know:</p>
+    <p style="margin-top: 0.5em;"><span class="highlight-green">The people who learn to work with AI now<br>will be best prepared for whatever comes next.</span></p>
+  </div>
+  <br>
+  <p style="font-size: 0.75em;">This isn't just about the project. <span class="highlight-word">It's about investing in ourselves.</span></p>
+  <aside class="notes">
+    [~45 min] Nobody knows what software development looks like in three years. The people who build the skill now will be best prepared.
+  </aside>
+</section>
+
+<section>
+  <h2>Three takeaways</h2>
+  <br>
+  <div class="card" style="text-align: center;">
+    <h3 style="font-size: 1.1em;">1. Context is king</h3>
+    <p>Give the AI access to everything. Make it the hub.</p>
+  </div>
+  <div class="card" style="text-align: center;">
+    <h3 style="font-size: 1.1em;">2. Design for the future</h3>
+    <p>Align processes so better models = better outcomes, automatically.</p>
+  </div>
+  <div class="card" style="text-align: center;">
+    <h3 style="font-size: 1.1em;">3. Start now</h3>
+    <p>The learning curve is real. This is an investment in yourself.</p>
+  </div>
+  <aside class="notes">
+    Pause between each.
+  </aside>
+</section>
+
+<section>
+  <h1>Q&amp;A</h1>
+  <br>
+  <p class="dim" style="font-size: 0.7em;">Questions, pushback, war stories — all welcome</p>
+  <aside class="notes">
+    Questions, concerns, debate — all welcome. Can demo OpenCode after. Backup slides follow.
+  </aside>
+</section>
+
+<!-- ============================================ -->
+<!-- BACKUP SLIDES (for Q&A support) -->
+<!-- ============================================ -->
+<section>
+  <h2>Backup: Hallucination &amp; trust</h2>
+  <div class="card" style="text-align: left;">
+    <p style="font-size: 0.8em;">
+      <span class="highlight-word">AI gets things wrong</span> — confidently. This hasn't gone away.<br><br>
+      <span class="highlight-word">Mitigation</span> — tests, CI, code review, type systems. The same safety nets that catch human bugs catch AI bugs.<br><br>
+      <span class="highlight-word">The trend</span> — hallucination rates are dropping with each model generation. But review remains essential regardless of who wrote the code.
+    </p>
+  </div>
+  <aside class="notes">
+    AI hallucinates — writes code that looks correct and isn't. Mitigation: tests, CI, type checking, code review — same gates that catch human bugs. Review is review, regardless of who wrote the code.
+  </aside>
+</section>
+
+<section>
+  <h2>Backup: Junior developers</h2>
+  <div class="card" style="text-align: left;">
+    <p style="font-size: 0.8em;">
+      <span class="highlight-word">The concern</span> — "If AI writes the code, how do juniors learn?"<br><br>
+      <span class="highlight-word">The shift</span> — juniors still learn by reading, reviewing, and understanding code. AI changes who writes it, not who needs to understand it.<br><br>
+      <span class="highlight-word">The opportunity</span> — juniors working with AI get exposed to more patterns, faster. They review more code than they could write. The learning curve changes shape, it doesn't disappear.
+    </p>
+  </div>
+  <aside class="notes">
+    Juniors still need to understand code to review it, debug it, and direct the AI. AI accelerates exposure — more patterns in a week than they'd write in a month. Skill shifts from "can you write it" to "can you evaluate whether it's right." Higher-order skill, not lower.
+  </aside>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: true,
+    transition: 'fade',
+    transitionSpeed: 'fast',
+    controlsTutorial: false,
+    progress: true,
+    center: true,
+    width: 1280,
+    height: 720,
+    margin: 0.1,
+    plugins: [RevealNotes, RevealHighlight]
+  });
+</script>
+</body>
+</html>
