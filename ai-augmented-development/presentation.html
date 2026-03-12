@@ -327,28 +327,6 @@
 </section>
 
 <section>
-  <h2>Make it the hub</h2>
-  <br>
-  <div style="font-size: 0.75em; line-height: 2.5;">
-    <span class="flow-step">Link to ticket</span>
-    <span class="flow-arrow">&rarr;</span>
-    <span class="flow-step">Clone &amp; branch</span>
-    <span class="flow-arrow">&rarr;</span>
-    <span class="flow-step">Code &amp; tests</span>
-    <span class="flow-arrow">&rarr;</span>
-    <span class="flow-step">Commit &amp; PR</span>
-    <span class="flow-arrow">&rarr;</span>
-    <span class="flow-step">Review</span>
-  </div>
-  <br>
-  <p style="font-size: 0.75em;"><span class="dim">I say:</span> "We're solving <span class="mono highlight-word">PROJ-1234</span>"</p>
-  <p style="font-size: 0.75em;">It figures out the rest.</p>
-  <aside class="notes">
-    My actual workflow. "We're solving this." It reads the ticket, branches, writes code and tests, commits, creates a PR. All instructed — branch naming, commit format, PR template. The agent tool is the hub I work from. I let it pull in the information it needs.
-  </aside>
-</section>
-
-<section>
   <h2>Managing context</h2>
   <br>
   <div class="card" style="text-align: center;">
@@ -359,6 +337,20 @@
   <p class="dim" style="font-size: 0.75em;">Keep default context tiny. Pull in the rest when needed.</p>
   <aside class="notes">
     There are many ways to layer context, but the principle is simple. Be very careful with what is always loaded. My preference is almost nothing in that box. Every always-loaded instruction consumes context before the task even starts. Then load the rest on demand: git rules for commits, log access for debugging, ticket context for implementation, wiki context for questions, review checklists for review. That keeps the model focused and leaves more room for the actual work. Shareable too — new dev joined, installed our commit skill, first commit matched convention perfectly. Zero onboarding for that.
+  </aside>
+</section>
+
+<section>
+  <h2>Make it the hub</h2>
+  <br>
+  <div class="card" style="text-align: center;">
+    <p><span class="highlight-word">I stay in the agent.</span></p>
+    <p>Tickets. CI. Logs. Docs. Code. Tests.</p>
+  </div>
+  <br>
+  <p style="font-size: 0.8em;">You direct. <span class="highlight-word">It travels.</span></p>
+  <aside class="notes">
+    This is what I want in practice. I do not want to keep bouncing between tickets, logs, CI, docs, and terminals if the agent can do that for me. I stay in the agent CLI and give direction. Then it goes out, gathers context, investigates, edits, runs checks, and comes back. The point is not just automation. The point is keeping my attention in one place while the agent moves around the system.
   </aside>
 </section>
 
