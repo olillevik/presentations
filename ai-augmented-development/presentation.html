@@ -263,17 +263,14 @@
     </div>
     <div class="card">
       <h3>Better tooling</h3>
-      <p>Claude Code, OpenCode, Cursor<br>GitHub Copilot CLI</p>
+      <p>Claude Code, OpenCode, Cursor, Github Copilot CLI, Codex</p>
     </div>
     <div class="card">
       <h3>Better practices</h3>
-      <p>We've learned how to work<br>with these tools effectively</p>
+      <p>We've learned how to work<br>with these  tools effectively</p>
     </div>
   </div>
   <br>
-  <p style="font-size: 0.75em;">
-    <span class="highlight-word">The gains stack</span> — better models make good practices pay off more, and vice versa
-  </p>
   <aside class="notes">
     Models: Opus 4.1 August, 4.5 November, 4.6 February. Each step incremental — 4.1 to 4.6 is a significant leap. Six months. Tooling: agents that execute multi-step tasks. Practices: prompting, project setup, knowing when to use AI — skills that take time. A better model doesn't improve your skills — but it rewards good skills more.
   </aside>
@@ -347,28 +344,21 @@
   <p style="font-size: 0.75em;"><span class="dim">I say:</span> "We're solving <span class="mono highlight-word">PROJ-1234</span>"</p>
   <p style="font-size: 0.75em;">It figures out the rest.</p>
   <aside class="notes">
-    My actual workflow. "We're solving this." It reads the ticket, branches, writes code and tests, commits, creates a PR. All instructed — branch naming, commit format, PR template. Not every time perfect — sometimes several rounds. But often, ticket to PR in one go.
+    My actual workflow. "We're solving this." It reads the ticket, branches, writes code and tests, commits, creates a PR. All instructed — branch naming, commit format, PR template. The agent tool is the hub I work from. I let it pull in the information it needs.
   </aside>
 </section>
 
 <section>
   <h2>Managing context</h2>
   <br>
-  <div class="versus">
-    <div class="card" style="text-align: center;">
-      <h3>Always loaded</h3>
-      <p>Project identity, architecture, conventions.<br><span class="highlight-word">Keep it lean.</span></p>
-    </div>
-    <div class="versus-divider">vs</div>
-    <div class="card" style="text-align: center;">
-      <h3>Loaded on demand</h3>
-      <p><span class="mono">/git-commit</span> &middot; <span class="mono">/query-logs</span> &middot; <span class="mono">/check-ticket</span><br><span class="mono">/wiki</span> &middot; <span class="mono">/review</span></p>
-    </div>
+  <div class="card" style="text-align: center;">
+    <p><span class="highlight-word">Default context</span> — as close to empty as possible</p>
+    <p><span class="highlight-word">Then load on demand</span> — <span class="mono">/git-commit</span> &middot; <span class="mono">/query-logs</span> &middot; <span class="mono">/check-ticket</span> &middot; <span class="mono">/wiki</span> &middot; <span class="mono">/review</span></p>
   </div>
   <br>
-  <p class="dim" style="font-size: 0.75em;">Many mechanisms for layering this. The principle: protect the context window.</p>
+  <p class="dim" style="font-size: 0.75em;">Keep default context tiny. Pull in the rest when needed.</p>
   <aside class="notes">
-    Always loaded: project identity, architecture, conventions. Keep it lean. On demand: skills for git, logs, tickets, wiki, review. Only in context when needed. Shareable — new dev joined, installed our commit skill, first commit matched convention perfectly. Zero onboarding for that.
+    There are many ways to layer context, but the principle is simple. Be very careful with what is always loaded. My preference is almost nothing in that box. Every always-loaded instruction consumes context before the task even starts. Then load the rest on demand: git rules for commits, log access for debugging, ticket context for implementation, wiki context for questions, review checklists for review. That keeps the model focused and leaves more room for the actual work. Shareable too — new dev joined, installed our commit skill, first commit matched convention perfectly. Zero onboarding for that.
   </aside>
 </section>
 
