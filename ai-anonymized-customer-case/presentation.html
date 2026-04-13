@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hvordan AI forsterker programvareleveranser</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root {
+    --r-background-color: #f3efe6;
+    --r-main-color: #2c2a28;
+    --r-heading-color: #171513;
+    --r-link-color: #1f6f78;
+    --r-selection-background-color: #d7c7a7;
+    --ink-soft: #6b655f;
+    --accent: #1f6f78;
+    --accent-warm: #a35f2d;
+    --accent-green: #2f7d55;
+    --panel: rgba(255, 252, 246, 0.92);
+    --panel-strong: #fffaf0;
+    --border: rgba(44, 42, 40, 0.12);
+    --shadow: 0 24px 60px rgba(56, 44, 28, 0.12);
+  }
+
+  html {
+    background:
+      radial-gradient(circle at top left, rgba(31, 111, 120, 0.10), transparent 30%),
+      radial-gradient(circle at bottom right, rgba(163, 95, 45, 0.10), transparent 28%),
+      linear-gradient(135deg, #f7f3eb 0%, #efe7d8 100%);
+  }
+
+  .reveal {
+    font-family: 'Manrope', sans-serif;
+    font-size: 31px;
+    font-weight: 400;
+  }
+
+  .reveal .slides {
+    text-align: left;
+  }
+
+  .reveal section {
+    padding: 24px 34px;
+  }
+
+  .reveal h1,
+  .reveal h2,
+  .reveal h3 {
+    font-family: 'Manrope', sans-serif;
+    text-transform: none;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    margin: 0;
+  }
+
+  .reveal h1 {
+    font-size: 2.45em;
+    font-weight: 800;
+  }
+
+  .reveal h2 {
+    font-size: 1.55em;
+    font-weight: 800;
+    color: var(--accent);
+    margin-bottom: 0.3em;
+  }
+
+  .reveal h3 {
+    font-size: 0.82em;
+    font-weight: 700;
+    color: var(--accent-warm);
+    margin-bottom: 0.3em;
+  }
+
+  .reveal p,
+  .reveal li {
+    line-height: 1.45;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    margin-bottom: 1em;
+    padding: 0.35em 0.7em;
+    border-radius: 999px;
+    background: rgba(31, 111, 120, 0.10);
+    color: var(--accent);
+    font-size: 0.46em;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .subtitle {
+    margin-top: 0.7em;
+    color: var(--ink-soft);
+    font-size: 0.72em;
+    max-width: 23em;
+  }
+
+  .lead {
+    font-size: 1.02em;
+    max-width: 24em;
+  }
+
+  .muted {
+    color: var(--ink-soft);
+  }
+
+  .accent {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .warm {
+    color: var(--accent-warm);
+    font-weight: 700;
+  }
+
+  .green {
+    color: var(--accent-green);
+    font-weight: 700;
+  }
+
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    padding: 1em 1.15em;
+  }
+
+  .panel-strong {
+    background: var(--panel-strong);
+  }
+
+  .two-up {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.9em;
+    margin-top: 1em;
+  }
+
+  .three-up {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.7em;
+    margin-top: 1em;
+  }
+
+  .three-up.compact {
+    gap: 0.55em;
+    margin-top: 0.75em;
+  }
+
+  .three-up.compact .panel {
+    padding: 0.82em 0.95em;
+  }
+
+  .three-up.compact h3 {
+    margin-bottom: 0.22em;
+    font-size: 0.78em;
+  }
+
+  .three-up.compact p {
+    font-size: 0.8em;
+    line-height: 1.35;
+  }
+
+  .three-up.compact.tight {
+    gap: 0.48em;
+    margin-top: 0.65em;
+  }
+
+  .three-up.compact.tight .panel {
+    padding: 0.74em 0.86em;
+  }
+
+  .three-up.compact.tight h3 {
+    font-size: 0.74em;
+    margin-bottom: 0.16em;
+  }
+
+  .three-up.compact.tight p {
+    font-size: 0.76em;
+    line-height: 1.28;
+  }
+
+  .big-quote {
+    font-size: 1.2em;
+    line-height: 1.25;
+    max-width: 18em;
+  }
+
+  .metric {
+    font-size: 2.1em;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 0.18em;
+  }
+
+  .metric-label {
+    font-size: 0.6em;
+    color: var(--ink-soft);
+  }
+
+  .list-clean {
+    list-style: none;
+    margin: 0.8em 0 0;
+    padding: 0;
+  }
+
+  .list-clean li {
+    border-top: 1px solid var(--border);
+    padding: 0.5em 0;
+    font-size: 0.82em;
+  }
+
+  .list-clean li:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .list-clean.tight {
+    margin-top: 0.55em;
+  }
+
+  .list-clean.tight li {
+    padding: 0.34em 0;
+    font-size: 0.77em;
+    line-height: 1.32;
+  }
+
+  .quote-compact .big-quote {
+    font-size: 1.08em;
+    line-height: 1.18;
+    max-width: none;
+  }
+
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0.8em;
+    align-items: stretch;
+    margin-top: 1em;
+  }
+
+  .compare-divider {
+    display: flex;
+    align-items: center;
+    color: var(--ink-soft);
+    font-weight: 700;
+    font-size: 1.2em;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35em;
+    margin-top: 0.8em;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 0.26em 0.55em;
+    border-radius: 999px;
+    background: rgba(44, 42, 40, 0.06);
+    font-size: 0.52em;
+    color: var(--ink-soft);
+  }
+
+  .mono {
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .spacer {
+    height: 0.4em;
+  }
+
+  .reveal .speaker-controls-notes {
+    font-family: 'Manrope', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .reveal .slide-number {
+    top: 18px;
+    right: 22px;
+    bottom: auto;
+    background: rgba(255, 250, 240, 0.92);
+    color: var(--ink-soft);
+    padding: 0.18em 0.42em;
+    border-radius: 999px;
+    font-size: 0.45em;
+  }
+
+  @media (max-width: 900px) {
+    .two-up,
+    .three-up,
+    .compare {
+      grid-template-columns: 1fr;
+    }
+
+    .compare-divider {
+      justify-content: center;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<section>
+  <h1>Hvordan AI forsterker<br>programvareleveranser</h1>
+  <p class="subtitle">Praktisk bruk av AI</p>
+  <aside class="notes">
+    Jeg holder meg til tre ting: hvordan vi innførte AI, hvordan vi brukte det i praksis, og hvilke effekter vi observerte.
+    Jeg forsøker ikke å selge inn en visjon eller påstå tall vi ikke har målt.
+  </aside>
+</section>
+
+<section>
+  <h2>AI ble en del av vanlig arbeid</h2>
+  <ul class="list-clean">
+    <li><span class="accent">Fri tilgang til verktøy</span> - flere modeller og verktøy var enkle å bruke i arbeidshverdagen</li>
+    <li><span class="accent">AI i vanlig utviklingsflyt</span> - fra oppgaveforståelse og kode til tester, PR og analyse</li>
+    <li><span class="accent">AI med kontekst</span> - tilgang til kode, backlog, CI/CD, logger, metrikker og produksjonsdata</li>
+  </ul>
+  <aside class="notes">
+    Vi jobbet i et stort og komplekst systemlandskap.
+    Hovedpoenget tidlig i presentasjonen er dette: AI ble ikke et sideverktøy, men en del av vanlig arbeid.
+    Det skjedde fordi det fikk tilgang til samme kontekst som utviklerne brukte.
+  </aside>
+</section>
+
+<section>
+  <h2>Samme leveranseprosess, ny arbeidsform</h2>
+  <div class="panel panel-strong">
+    <p class="big-quote">Leveranseprosessen var den samme. Forskjellen var at AI kunne bruke de samme mekanismene som utvikleren.</p>
+  </div>
+  <div class="three-up compact">
+    <div class="panel">
+      <h3>Løs X</h3>
+      <p>AI kunne ta en oppgave, gjøre kodeendringer, kjøre tester og lage en pull request.</p>
+    </div>
+    <div class="panel">
+      <h3>Analyser Y</h3>
+      <p>AI kunne lese kode, logger, metrikker og data for å forstå feil og foreslå neste steg.</p>
+    </div>
+    <div class="panel">
+      <h3>Sjekk Z</h3>
+      <p>AI kunne følge builds, deploys og driftssignaler, mens mennesker beholdt review, deploy og ansvar.</p>
+    </div>
+  </div>
+  <p class="muted">Arbeidet gikk fortsatt gjennom oppgave, kode, testing, review, utrulling og oppfølging.</p>
+  <aside class="notes">
+    Dette er fortsatt en vanlig leveransehverdag i et teknologimiljo.
+    Forskjellen er at jeg nå kunne be AI om å løse noe, analysere noe eller sjekke noe, og så kunne den bruke de samme mekanismene jeg selv ville brukt.
+    Det er derfor det er misvisende å snakke om en egen AI-flyt. Det var samme leveranseprosess, men med AI integrert inn i den.
+  </aside>
+</section>
+
+<section>
+  <h2>AI og ingeniørdisiplin forsterket hverandre</h2>
+  <div class="panel panel-strong quote-compact">
+    <p class="big-quote">AI forsterket utvikleren, og god ingeniørdisiplin forsterket AI.</p>
+  </div>
+  <ul class="list-clean tight">
+    <li><span class="accent">Pipelines og tester</span> - ga AI rask og iterativ tilbakemelding på om endringene faktisk virket</li>
+    <li><span class="accent">Kontrollmekanismer</span> - review, tilgangsstyring og deployflyt gjorde at AI kunne brukes innenfor tydelige rammer</li>
+    <li><span class="accent">Logger, metrikker og driftssignaler</span> - gjorde at AI kunne følge opp resultatet, ikke bare skrive koden</li>
+  </ul>
+  <aside class="notes">
+    Dette er et hovedpoeng i presentasjonen.
+    Det som tidligere støttet utvikleren - tester, pipelines, review, monitorering - kan nå brukes iterativt av AI.
+    Derfor blir effekten av god ingeniørdisiplin minst like viktig som før, og ofte viktigere.
+  </aside>
+</section>
+
+<section>
+  <h2>Hvilke effekter vi observerte</h2>
+  <div class="three-up compact tight">
+    <div class="panel">
+      <h3>Mer rekkevidde</h3>
+      <p>Få teknologer kunne håndtere et stort økosystem, og hver person kunne jobbe bredere på tvers av fagområder.</p>
+    </div>
+    <div class="panel">
+      <h3>Høyere tempo</h3>
+      <p>Noen oppgaver gikk fra uker til timer.</p>
+    </div>
+    <div class="panel">
+      <h3>Ny flaskehals</h3>
+      <p>Når gjennomføring gikk raskere, ble produktbeslutninger og annet rundt tydeligere begrensninger.</p>
+    </div>
+  </div>
+  <aside class="notes">
+    Dette er observasjoner fra praksis, ikke baselinemålinger.
+    Men de er viktige fordi de sier noe om hvordan arbeidsformen faktisk endret seg.
+    Hvis noen spør etter eksakte tall eller ROI, er det naturlig å svare at vi ikke jobbet med den typen baseline i dette caset.
+  </aside>
+</section>
+
+<section>
+  <h2>Hvorfor innføring og bruk fungerte godt</h2>
+  <ul class="list-clean">
+    <li><span class="green">Tydelig prioritet fra ledelsen</span> - AI var en uttalt forventning, ikke et sideinitiativ</li>
+    <li><span class="green">Enkel tilgang</span> - verktøy og modeller var tilgjengelige uten mye friksjon</li>
+    <li><span class="green">Rom for eksperimentering</span> - læringen skjedde gjennom faktisk bruk i arbeidshverdagen</li>
+    <li><span class="green">Riktig oppkobling</span> - integrasjoner, kontekst og kontroller gjorde bruken praktisk</li>
+  </ul>
+  <aside class="notes">
+    Dette er min vurdering av hvorfor innføring og bruk fungerte godt i praksis.
+    Innføring handler ikke først og fremst om ett kurs.
+    Det handler om tilgang, forventning, læring gjennom bruk, og å koble AI på de riktige systemene med riktige kontroller.
+  </aside>
+</section>
+
+<section>
+  <h2>Hvordan adopsjonen ble støttet</h2>
+  <div class="three-up compact tight">
+    <div class="panel">
+      <h3>Champions og community</h3>
+      <p>Levende Slack-kanaler med tydelige ledere gjorde det lett å diskutere modeller, arbeidsmåter og erfaringer.</p>
+    </div>
+    <div class="panel">
+      <h3>Enkel oppstart</h3>
+      <p>Dokumentasjon og oppkobling mot verktøy og modeller gjorde at det raskt gikk fra interesse til faktisk bruk.</p>
+    </div>
+    <div class="panel">
+      <h3>Trygge rammer</h3>
+      <p>Egen kanal for compliance gjorde det tydelig hva som var lov, og hva som ikke var lov.</p>
+    </div>
+  </div>
+  <aside class="notes">
+    Dette var ikke bare et spørsmål om lisens og tilgang.
+    Det fantes faktiske arenaer for læring, spørsmål og deling.
+    Compliance-sporet var også viktig fordi det gjorde det lettere å bruke verktøyene uten å være i tvil om rammene.
+  </aside>
+</section>
+
+<section>
+  <h2>Hvordan bruken spredte seg</h2>
+  <div class="three-up compact tight">
+    <div class="panel">
+      <h3>Det som var nyttig ble delt</h3>
+      <p>Skills og MCP-integrasjoner ble delt via markedsplass, Git-repo og Slack, avhengig av hvor modent og generisk det var.</p>
+    </div>
+    <div class="panel">
+      <h3>Gjenbruk senket terskelen</h3>
+      <p>Folk kom raskere i gang når de kunne bygge videre på skills, integrasjoner og konkrete eksempler som allerede virket.</p>
+    </div>
+    <div class="panel">
+      <h3>Noen gikk foran</h3>
+      <p>Noen tok det i bruk tidlig, fant arbeidsformer som virket, og gjorde det lettere for andre å følge etter.</p>
+    </div>
+  </div>
+  <aside class="notes">
+    Dette er en nyttig observasjon for egen utrulling.
+    Deling var ikke perfekt eller fullt standardisert, men den fungerte likevel fordi community, eksempler og gjenbruk senket terskelen.
+    Mye spredte seg gjennom at noen få brøytet vei og andre kunne bygge videre på det.
+  </aside>
+</section>
+
+<section>
+  <h2>Kort oppsummert</h2>
+  <div class="three-up compact">
+    <div class="panel">
+      <h3>Størst verdi kom i arbeidsflyten</h3>
+      <p>Den største effekten kom da AI ble brukt i vanlig leveransearbeid, ikke bare som en separat assistent.</p>
+    </div>
+    <div class="panel">
+      <h3>God ingeniørdisiplin forsterket AI</h3>
+      <p>Tester, pipelines, kontrollmekanismer og driftssignaler gjorde AI langt mer nyttig i bruk.</p>
+    </div>
+    <div class="panel">
+      <h3>Noen gikk foran, andre fulgte etter</h3>
+      <p>Tilgang, tydelige ledere, deling og konkrete eksempler gjorde det lettere å få flere i gang.</p>
+    </div>
+  </div>
+  <aside class="notes">
+    Hvis dette skal brukes som grunnlag for videre utrulling, er dette essensen.
+    Tenk mindre på enkeltverktøy og mer på hvordan AI kobles inn i faktisk arbeid, støttes av god engineering, og spres gjennom mennesker og deling.
+  </aside>
+</section>
+
+<section>
+  <h1>Q&amp;A</h1>
+  <aside class="notes">
+    Her kan jeg utdype verktøyvalg, arbeidsflyt, hvorfor vi ikke bruker presise tall, og hva som virker overførbart til en bredere konsulentkontekst.
+  </aside>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: true,
+    transition: 'fade',
+    transitionSpeed: 'fast',
+    controlsTutorial: false,
+    progress: true,
+    center: true,
+    width: 1280,
+    height: 720,
+    margin: 0.08,
+    plugins: [RevealNotes, RevealHighlight]
+  });
+</script>
+</body>
+</html>
