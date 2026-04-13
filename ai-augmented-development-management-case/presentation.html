@@ -7,33 +7,38 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap');
-
   :root {
-    --r-background-color: #f3efe6;
-    --r-main-color: #2c2a28;
-    --r-heading-color: #171513;
-    --r-link-color: #1f6f78;
-    --r-selection-background-color: #d7c7a7;
-    --ink-soft: #6b655f;
-    --accent: #1f6f78;
-    --accent-warm: #a35f2d;
-    --accent-green: #2f7d55;
-    --panel: rgba(255, 252, 246, 0.92);
-    --panel-strong: #fffaf0;
-    --border: rgba(44, 42, 40, 0.12);
-    --shadow: 0 24px 60px rgba(56, 44, 28, 0.12);
+    --ss-purple: #4d1d82;
+    --ss-dark-purple: #2a1449;
+    --ss-bg-purple: #ede9f2;
+    --ss-bg-beige: #fdf2e5;
+    --ss-black: #1d1d1b;
+    --ss-orange: #f07d00;
+    --ss-grey: #a8a8a7;
+    --r-background-color: #ffffff;
+    --r-main-color: var(--ss-black);
+    --r-heading-color: var(--ss-purple);
+    --r-link-color: var(--ss-purple);
+    --r-selection-background-color: var(--ss-bg-purple);
+    --ink-soft: #635e69;
+    --accent: var(--ss-purple);
+    --accent-warm: var(--ss-orange);
+    --accent-green: var(--ss-orange);
+    --panel: rgba(255, 255, 255, 0.92);
+    --panel-strong: #ffffff;
+    --border: rgba(77, 29, 130, 0.14);
+    --shadow: 0 26px 70px rgba(42, 20, 73, 0.12);
   }
 
   html {
     background:
-      radial-gradient(circle at top left, rgba(31, 111, 120, 0.10), transparent 30%),
-      radial-gradient(circle at bottom right, rgba(163, 95, 45, 0.10), transparent 28%),
-      linear-gradient(135deg, #f7f3eb 0%, #efe7d8 100%);
+      radial-gradient(circle at top left, rgba(77, 29, 130, 0.12), transparent 28%),
+      radial-gradient(circle at bottom right, rgba(240, 125, 0, 0.12), transparent 24%),
+      linear-gradient(135deg, #ffffff 0%, var(--ss-bg-beige) 58%, var(--ss-bg-purple) 100%);
   }
 
   .reveal {
-    font-family: 'Manrope', sans-serif;
+    font-family: Tahoma, Arial, sans-serif;
     font-size: 31px;
     font-weight: 400;
   }
@@ -49,7 +54,7 @@
   .reveal h1,
   .reveal h2,
   .reveal h3 {
-    font-family: 'Manrope', sans-serif;
+    font-family: Tahoma, Arial, sans-serif;
     text-transform: none;
     letter-spacing: -0.03em;
     line-height: 1.08;
@@ -85,8 +90,8 @@
     margin-bottom: 1em;
     padding: 0.35em 0.7em;
     border-radius: 999px;
-    background: rgba(31, 111, 120, 0.10);
-    color: var(--accent);
+    background: var(--ss-purple);
+    color: #ffffff;
     font-size: 0.46em;
     font-weight: 700;
     letter-spacing: 0.12em;
@@ -95,9 +100,12 @@
 
   .subtitle {
     margin-top: 0.7em;
-    color: var(--ink-soft);
-    font-size: 0.72em;
-    max-width: 23em;
+    color: var(--ss-orange);
+    font-size: 0.6em;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    max-width: 24em;
   }
 
   .lead {
@@ -219,7 +227,47 @@
   }
 
   .mono {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: Consolas, 'SFMono-Regular', Menlo, monospace;
+  }
+
+  .ss-logo {
+    display: block;
+    width: 185px;
+    margin: 0 0 1.2em;
+  }
+
+  .qna-slide {
+    text-align: center;
+  }
+
+  .qna-slide .ss-logo {
+    width: 145px;
+    margin: 0 auto 1.4em;
+  }
+
+  .qna-slide h1 {
+    margin-bottom: 0.22em;
+  }
+
+  .qna-slide .subtitle {
+    margin: 0 auto;
+    color: var(--ink-soft);
+    font-size: 0.58em;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: none;
+  }
+
+  .reveal .slide-number {
+    top: 18px;
+    right: 22px;
+    bottom: auto;
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--ink-soft);
+    padding: 0.18em 0.42em;
+    border-radius: 999px;
+    font-size: 0.45em;
+    border: 1px solid var(--border);
   }
 
   .center {
@@ -231,7 +279,7 @@
   }
 
   .reveal .speaker-controls-notes {
-    font-family: 'Manrope', sans-serif;
+    font-family: Tahoma, Arial, sans-serif;
     font-size: 16px;
     line-height: 1.6;
   }
@@ -254,7 +302,8 @@
 <div class="reveal">
 <div class="slides">
 
-<section>
+<section class="title-slide">
+  <img class="ss-logo" src="../ai-in-software-delivery/assets/Sopra-Steria_logo_RGB_black-color.png" alt="Sopra Steria logo">
   <h1>AI-Augmented<br>Development</h1>
   <p class="subtitle">Lessons from the Trenches</p>
   <aside class="notes">
@@ -457,7 +506,8 @@
   </aside>
 </section>
 
-<section>
+<section class="qna-slide">
+  <img class="ss-logo" src="../ai-in-software-delivery/assets/Sopra-Steria_logo_RGB_black-color.png" alt="Sopra Steria logo">
   <h1>Q&amp;A</h1>
   <p class="subtitle">Questions, pushback, examples, and practical concerns are all welcome.</p>
   <aside class="notes">
