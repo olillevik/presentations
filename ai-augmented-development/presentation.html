@@ -220,15 +220,29 @@
     font-weight: 700;
   }
 
-  .reveal .takeaway-box {
-    background: rgba(237, 233, 242, 0.82);
-    border: 1px solid rgba(77, 29, 130, 0.16);
-    border-radius: 24px;
-    padding: 1.5em;
-    margin-top: 1em;
-    text-align: center;
-    font-size: 1.1em;
-    box-shadow: var(--shadow);
+  .reveal .context-flow {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1.2fr);
+    gap: 0.7em;
+    align-items: stretch;
+    margin-top: 0.9em;
+  }
+
+  .reveal .hub-focus {
+    margin-top: 1.2em;
+  }
+
+  .reveal .hub-main {
+    margin: 0;
+    font-size: 1.35em;
+    line-height: 1.15;
+  }
+
+  .reveal .hub-support {
+    margin: 0.45em 0 0;
+    font-size: 0.82em;
+    color: var(--text-soft);
+    letter-spacing: 0.03em;
   }
 
   .reveal .inspire-box {
@@ -304,7 +318,8 @@
     .reveal .versus,
     .reveal .card-grid,
     .reveal .card-grid-3,
-    .reveal .transition-grid {
+    .reveal .transition-grid,
+    .reveal .context-flow {
       grid-template-columns: 1fr;
     }
 
@@ -328,7 +343,10 @@
   <h1>AI-Augmented<br>Development</h1>
   <p class="subtitle">Lessons from the Trenches</p>
   <aside class="notes">
-    Welcome. Developer to developer — not a manager, not a salesman. What worked, what didn't, where this is going. Questions anytime — interrupt or save them. Let me start with a story.
+    developer to developer
+    <br>not management pitch
+    <br>what worked / what didn't
+    <br>start with story
   </aside>
 </section>
 
@@ -342,7 +360,11 @@
   <br>
   <p style="font-size: 0.85em;">I fed the code to an LLM.<br><span class="highlight-word">Found in a minute.</span></p>
   <aside class="notes">
-    A little over a year ago. Senior dev — smart guy, wrote that code — couldn't find it. I fed it to an LLM. Race condition in test setup. Found in a minute. Before agents, before any tooling. Just a chat window and a paste.
+    year ago
+    <br>senior dev knew code
+    <br>race in test setup
+    <br>paste into chat
+    <br>before agents
   </aside>
 </section>
 
@@ -351,7 +373,9 @@
   <br>
   <p style="font-size: 1.1em;">Today, I don't write code by hand anymore.</p>
   <aside class="notes">
-    A chat window and a paste. No agents, no tooling. A year later — I don't write code by hand anymore. Not always faster, not always perfect.
+    no agent then
+    <br>talk: what changed
+    <br>talk: how I work now
   </aside>
 </section>
 
@@ -369,7 +393,8 @@
     </div>
   </div>
   <aside class="notes">
-    If your mental model is Copilot suggesting the next line — outdated. We use Claude Code and OpenCode — these are agents. They read code, edit files, run tests, check CI, iterate on their own work. You give them a task and they figure out how to do it.
+    old mental model outdated
+    <br>new capabilities
   </aside>
 </section>
 
@@ -391,7 +416,9 @@
   </div>
   <br>
   <aside class="notes">
-    Models: Opus 4.1 August, 4.5 November, 4.6 February. Each step incremental — 4.1 to 4.6 is a significant leap. Six months. Tooling: agents that execute multi-step tasks. Practices: prompting, project setup, knowing when to use AI — skills that take time. A better model doesn't improve your skills — but it rewards good skills more.
+    model jumps in months
+    <br>practice matters too
+    <br>better models reward better skills
   </aside>
 </section>
 
@@ -407,27 +434,31 @@
   <p style="font-size: 0.75em;">But context is also <span class="highlight-warm">finite</span></p>
   <p class="dim" style="font-size: 0.75em;">The AI has a limited window. What's in that window<br>determines the quality of the output.</p>
   <aside class="notes">
-    Most important lesson. AI is only as good as what it can see. But context is finite — working memory. Too much in and the output gets worse. Be smart about what's loaded when.
+    relevant context
+    <br>choose what is loaded
   </aside>
 </section>
 
 <section>
-  <h2>Give it access to everything</h2>
+  <h2>Give it broad access to what it needs</h2>
   <ul class="fragment-list">
     <li><span class="highlight-word">Code</span> — repos, PRs, code search across repos</li>
     <li><span class="highlight-word">Tickets</span> — the work to be done, requirements, context</li>
     <li><span class="highlight-word">CI/CD</span> — build output, deployment status</li>
     <li><span class="highlight-word">Logs &amp; monitoring</span> — what's happening in production</li>
-    <li><span class="highlight-word">Databases</span> — schema, data context</li>
-    <li><span class="highlight-word">Confluence</span> — documentation, decisions, architecture</li>
+    <li><span class="highlight-word">Databases</span> — schema and data</li>
+    <li><span class="highlight-word">Documentation</span> — requirements, decisions, architecture</li>
   </ul>
   <aside class="notes">
-    AI can access almost everything a developer can. Turning point was ticket access — before that, every task started with me explaining what to build. After: "we're solving ticket-1234" and it reads the requirements itself. Logs, metrics, CI, database. Each integration improves the chance of a successful outcome.
+    code first
+    <br>biggest unlock by far
+    <br>ergonomics compound
+    <br>direct access beats copy/paste
   </aside>
 </section>
 
 <section>
-  <h2>...with eyes open</h2>
+  <h2>...within safe boundaries</h2>
   <div class="card-grid">
     <div class="card">
       <h3 style="color: var(--accent-warm);">Read vs. write</h3>
@@ -441,35 +472,48 @@
   <br>
   <p class="dim" style="font-size: 0.7em;">Security is a big topic — secrets, data leakage, prompt injection, access control.<br>Calibrate to your project's risk appetite.</p>
   <aside class="notes">
-    "Access to everything" doesn't mean admin credentials and hope for the best. Least privilege — same principle as for humans. Security is a big topic — more than one slide. Be intentional. Calibrate to risk appetite. Internal PoC is different from a payment system. I wish we could sandbox me.
+    <br>prod read
+    <br>test freedom
+    <br>boundaries by risk appetite
   </aside>
 </section>
 
 <section>
   <h2>Managing context</h2>
   <br>
-  <div class="card" style="text-align: center;">
-    <p><span class="highlight-word">Default context</span> — as close to empty as possible</p>
-    <p><span class="highlight-word">Then load on demand</span> — <span class="mono">/git-commit</span> &middot; <span class="mono">/query-logs</span> &middot; <span class="mono">/check-ticket</span> &middot; <span class="mono">/wiki</span> &middot; <span class="mono">/review</span></p>
+  <div class="context-flow">
+    <div class="transition-panel">
+      <span class="transition-label">Default</span>
+      <p class="transition-value"><span class="highlight-word">As close to empty as possible.</span></p>
+    </div>
+    <div class="transition-arrow">&rarr;</div>
+    <div class="transition-panel">
+      <span class="transition-label">On demand</span>
+      <p class="transition-value"><span class="highlight-word">Load what you need.</span></p>
+      <p class="dim" style="font-size: 0.62em; margin-top: 0.55em;"><span class="mono">/git-commit</span> &middot; <span class="mono">/query-logs</span> &middot; <span class="mono">/check-ticket</span> &middot; <span class="mono">/wiki</span> &middot; <span class="mono">/review</span></p>
+    </div>
   </div>
   <br>
   <p class="dim" style="font-size: 0.75em;">Keep default context tiny. Pull in the rest when needed.</p>
   <aside class="notes">
-    There are many ways to layer context, but the principle is simple. Be very careful with what is always loaded. My preference is almost nothing in that box. Every always-loaded instruction consumes context before the task even starts. Then load the rest on demand: git rules for commits, log access for debugging, ticket context for implementation, wiki context for questions, review checklists for review. That keeps the model focused and leaves more room for the actual work. Shareable too — new dev joined, installed our commit skill, first commit matched convention perfectly. Zero onboarding for that.
+    <br>always-loaded costs context
+    <br>shareable setup
+    <br>focus stays on task
   </aside>
 </section>
 
 <section>
   <h2>Make it the hub</h2>
   <br>
-  <div class="card" style="text-align: center;">
-    <p><span class="highlight-word">I stay in the agent.</span></p>
-    <p>Tickets. CI. Logs. Docs. Code. Tests.</p>
+  <div class="hub-focus">
+    <p class="hub-main"><span class="highlight-word">I stay in the agent.</span></p>
+    <p class="hub-support">Tickets. CI. Logs. Docs. Code. Tests.</p>
   </div>
   <br>
-  <p style="font-size: 0.8em;">You direct. <span class="highlight-word">It travels.</span></p>
+  <p style="font-size: 0.8em;">I direct. <span class="highlight-word">It travels.</span></p>
   <aside class="notes">
-    This is what I want in practice. I do not want to keep bouncing between tickets, logs, CI, docs, and terminals if the agent can do that for me. I stay in the agent CLI and give direction. Then it goes out, gathers context, investigates, edits, runs checks, and comes back. The point is not just automation. The point is keeping my attention in one place while the agent moves around the system.
+    <br>less tab-hopping
+    <br>attention stays here
   </aside>
 </section>
 
@@ -477,47 +521,31 @@
 <!-- ACT 3: THE NEW REALITY -->
 <!-- ============================================ -->
 <section>
-  <h2>Augmented me</h2>
-  <ul class="fragment-list">
-    <li><span class="highlight-word">I decide what good looks like</span></li>
-    <li><span class="highlight-word">It does the legwork</span></li>
-    <li><span class="highlight-word">I review and own the outcome</span></li>
-  </ul>
-  <aside class="notes">
-    This is how I think about it. Not humans versus AI. Not replacement. Augmentation. I decide what we are trying to achieve and what good looks like. The AI does the legwork — reads, searches, edits, runs, checks, iterates. Then I review the result, make the judgment calls, and own the outcome. That is the division of labor.
-  </aside>
-</section>
-
-<section>
-  <h2>The workflow shift</h2>
-  <div class="transition-grid">
-    <div class="transition-panel">
-      <span class="transition-label">Before</span>
-      <p class="transition-value">Write code.</p>
-    </div>
-    <div class="transition-arrow">&rarr;</div>
-    <div class="transition-panel">
-      <span class="transition-label">Now</span>
-      <p class="transition-value"><span class="highlight-word">Think</span>, <span class="highlight-word">direct</span>, <span class="highlight-word">review</span>.</p>
-    </div>
+  <h2>The loop</h2>
+  <div style="margin-top: 1.2em;">
+    <p style="font-size: 0.92em; margin: 0.38em 0; font-weight: 600;">We plan together.</p>
+    <p style="font-size: 0.92em; margin: 0.38em 0; font-weight: 600;">The AI executes.</p>
+    <p style="font-size: 0.92em; margin: 0.38em 0; font-weight: 600;">We review together.</p>
+    <p style="font-size: 0.92em; margin: 0.38em 0; font-weight: 700;"><span class="highlight-word">I decide.</span></p>
   </div>
-  <p style="font-size: 0.8em; margin-top: 0.9em;">Discuss. Plan. Instruct. Let the AI execute.</p>
-  <p class="dim" style="font-size: 0.75em;">Less typing. More <span class="highlight-word">thinking</span>.</p>
   <aside class="notes">
-    Less typing, more thinking. Not always faster — sometimes I spend 20 minutes directing what I could have typed in 10. And sometimes worse: burned a full day trying to get AI to migrate .NET Framework to .NET Core. Threw it away. It fails too. Knowing when to cut your losses is part of the skill.
+    simple and hard tasks fit same loop
+    <br>human judgment stays central
   </aside>
 </section>
 
 <section>
   <h2>The bottleneck shifts</h2>
   <br>
-  <div class="takeaway-box">
-    <p>As coding gets faster,<br><span class="highlight-word" style="font-size: 1.3em;">the next constraint becomes the bottleneck</span></p>
+  <div>
+    <p style="font-size: 1em; margin: 0.2em 0;">As coding gets faster,</p>
+    <p style="font-size: 1.2em; margin: 0.2em 0;"><span class="highlight-word">the next constraint becomes the bottleneck.</span></p>
   </div>
   <br>
-  <p class="dim" style="font-size: 0.7em;">Review. CI. Context. Handoffs. Approvals.</p>
+  <p class="dim" style="font-size: 0.7em;">Review. CI. Clarity. Handoffs. Decision speed.</p>
   <aside class="notes">
-    Coding is only one part of delivery. If AI makes coding faster, we do not become that much faster overall. We hit the next constraint: review, CI, approvals, missing context, handoffs. And as AI starts helping with those too, the bottleneck moves again. So the goal is not to optimize just one step. It is to iteratively improve the whole system as the bottleneck shifts.
+    coding faster != delivery that much faster
+    <br>optimize the whole system
   </aside>
 </section>
 
@@ -538,22 +566,25 @@
     Not either/or — <span class="highlight-word">both</span>. AI catches the systematic stuff.<br>Humans focus on design, intent, and judgment.
   </p>
   <aside class="notes">
-    AI review on every PR in CI. Humans catch design and intent issues. AI never drifts — same checklist every time. Not either/or — both. And when a better model drops, reviews get better. Change nothing. Free upgrade.
+    AI review every PR
+    <br>better models improve this for free
   </aside>
 </section>
 
 <section>
   <h2>We tried full autonomy</h2>
   <br>
-  <div class="card" style="text-align: center;">
-    <p>Easy tasks were faster from my CLI.</p>
-    <p>Hard tasks still needed me.</p>
-    <p><span class="highlight-word">That left very little for Tinker to do.</span></p>
+  <div>
+    <p style="font-size: 0.92em; margin: 0.32em 0;">Easy tasks were faster from my CLI.</p>
+    <p style="font-size: 0.92em; margin: 0.32em 0;">Hard tasks still needed me.</p>
+    <p style="font-size: 0.98em; margin: 0.32em 0;"><span class="highlight-word">That left very little for Tinker to do.</span></p>
   </div>
   <br>
   <p class="dim" style="font-size: 0.75em;">Today, augmentation is more useful than autonomy.</p>
   <aside class="notes">
-    We built Tinker to go from ticket to PR without a human in the loop. At first that sounded like the obvious future. But my own CLI workflow improved so much that I could clear easy tasks faster myself. And the hard tasks were still too hard for Tinker alone. So the useful space in the middle was much smaller than we expected. That was a good lesson: today, augmentation is more valuable than autonomy.
+    ticket to PR without human
+    <br>sounded obvious at first
+    <br>middle space too small
   </aside>
 </section>
 
@@ -570,7 +601,8 @@
   <p><span class="highlight-word">The learning curve is real</span></p>
   <p class="dim" style="font-size: 0.75em;">You get measurably better at working with AI<br>over time.</p>
   <aside class="notes">
-    Learning curve is real. Difference between month one and month three was dramatic. First step: install an AI coding tool, open your project, ask it to explain a module you didn't write. That's your Monday morning.
+    month one vs month three
+    <br>ask it to explain a module
   </aside>
 </section>
 
@@ -584,7 +616,8 @@
   <br>
   <p class="dim" style="font-size: 0.75em;">We need to learn this while the technology is moving.</p>
   <aside class="notes">
-    This is the message for the people setting the environment around developers. Developers need access, low friction, and room to experiment. That means policies should allow experimentation instead of blocking it by default. If every attempt requires approvals, forms, or worrying about caps, learning slows down. And this is a skill we need to build while the technology is moving.
+    policies should enable learning
+    <br>forms, caps, blockers slow it down
   </aside>
 </section>
 
@@ -599,7 +632,8 @@
     <p style="margin-top: 0.8em;"><span class="highlight-green">But the people who learn to work with AI now<br>will be best prepared for it.</span></p>
   </div>
   <aside class="notes">
-    This has happened really fast, and I understand why some developers feel uneasy about it. I cannot tell you exactly where this ends. Nobody can. But I do think we can prepare for the unknown. And the best preparation I know is to learn to work with these tools now.
+    moving fast
+    <br>nobody knows where it ends
   </aside>
 </section>
 
@@ -607,19 +641,20 @@
   <h2>Takeaways</h2>
   <br>
   <div class="card" style="text-align: center;">
-    <h3 style="font-size: 1.1em;">1. Context creates leverage</h3>
-    <p>Access, integrations, and context layering make AI useful.</p>
+    <h3 style="font-size: 1.1em;">1. Access creates leverage</h3>
+    <p>Not just better prompts. You get more leverage with access.</p>
   </div>
   <div class="card" style="text-align: center;">
     <h3 style="font-size: 1.1em;">2. Humans with AI beat either alone</h3>
     <p>Today, augmentation is more valuable than autonomy.</p>
   </div>
   <div class="card" style="text-align: center;">
-    <h3 style="font-size: 1.1em;">3. Improve the whole process</h3>
-    <p>As coding gets faster, review, CI, context, and handoffs matter more.</p>
+    <h3 style="font-size: 1.1em;">3. The bottleneck shifts</h3>
+    <p>As coding gets faster, review, CI, clarity, handoffs, and decision speed matter more.</p>
   </div>
   <aside class="notes">
-    These are the three things I would want people to remember. Context creates leverage. Humans with AI beat either alone. And as coding gets faster, the whole delivery process needs continuous improvement.
+    <br>access enables feedback loops
+    <br>speed shifts the bottleneck
   </aside>
 </section>
 
@@ -628,7 +663,7 @@
   <h1>Q&amp;A</h1>
   <p class="subtitle">Questions, pushback, war stories - all welcome</p>
   <aside class="notes">
-    Questions, concerns, debate — all welcome. Can demo OpenCode after. Backup slides follow.
+    can demo OpenCode
   </aside>
 </section>
 
@@ -639,13 +674,13 @@
   <h2>Backup: Hallucination &amp; trust</h2>
   <div class="card" style="text-align: left;">
     <p style="font-size: 0.8em;">
-      <span class="highlight-word">AI gets things wrong</span> — confidently. This hasn't gone away.<br><br>
-      <span class="highlight-word">Mitigation</span> — tests, CI, code review, type systems. The same safety nets that catch human bugs catch AI bugs.<br><br>
-      <span class="highlight-word">The trend</span> — hallucination rates are dropping with each model generation. But review remains essential regardless of who wrote the code.
+      <span class="highlight-word">AI can be convincingly wrong.</span><br><br>
+      Put it inside a feedback loop that catches mistakes.<br><br>
+      The same harness that protects you from human bugs protects you from AI bugs.
     </p>
   </div>
   <aside class="notes">
-    AI hallucinates — writes code that looks correct and isn't. Mitigation: tests, CI, type checking, code review — same gates that catch human bugs. Review is review, regardless of who wrote the code.
+    <br>harness, not trust
   </aside>
 </section>
 
@@ -659,7 +694,10 @@
     </p>
   </div>
   <aside class="notes">
-    Juniors still need to understand code to review it, debug it, and direct the AI. AI accelerates exposure — more patterns in a week than they'd write in a month. Skill shifts from "can you write it" to "can you evaluate whether it's right." Higher-order skill, not lower.
+    still need understanding
+    <br>review, debug, direct
+    <br>more exposure faster
+    <br>skill shifts upward
   </aside>
 </section>
 
