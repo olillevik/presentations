@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI-Augmented Development: A Practical Case</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
 <style>
   :root {
     --ss-purple: #4d1d82;
@@ -15,6 +14,8 @@
     --ss-black: #1d1d1b;
     --ss-orange: #f07d00;
     --ss-grey: #a8a8a7;
+    --font-heading: 'Hurme Geometric Sans 4', Tahoma, Arial, sans-serif;
+    --font-body: 'Hurme Geometric Sans 3', Tahoma, Arial, sans-serif;
     --r-background-color: #ffffff;
     --r-main-color: var(--ss-black);
     --r-heading-color: var(--ss-purple);
@@ -24,21 +25,21 @@
     --accent: var(--ss-purple);
     --accent-warm: var(--ss-orange);
     --accent-green: var(--ss-orange);
-    --panel: rgba(255, 255, 255, 0.92);
+    --panel: rgba(255, 255, 255, 0.95);
     --panel-strong: #ffffff;
     --border: rgba(77, 29, 130, 0.14);
-    --shadow: 0 26px 70px rgba(42, 20, 73, 0.12);
+    --shadow: 0 16px 40px rgba(42, 20, 73, 0.08);
   }
 
   html {
     background:
-      radial-gradient(circle at top left, rgba(77, 29, 130, 0.12), transparent 28%),
-      radial-gradient(circle at bottom right, rgba(240, 125, 0, 0.12), transparent 24%),
-      linear-gradient(135deg, #ffffff 0%, var(--ss-bg-beige) 58%, var(--ss-bg-purple) 100%);
+      radial-gradient(circle at top left, rgba(77, 29, 130, 0.08), transparent 24%),
+      radial-gradient(circle at bottom right, rgba(240, 125, 0, 0.08), transparent 20%),
+      linear-gradient(135deg, #ffffff 0%, var(--ss-bg-beige) 64%, var(--ss-bg-purple) 100%);
   }
 
   .reveal {
-    font-family: Tahoma, Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 31px;
     font-weight: 400;
   }
@@ -54,7 +55,7 @@
   .reveal h1,
   .reveal h2,
   .reveal h3 {
-    font-family: Tahoma, Arial, sans-serif;
+    font-family: var(--font-heading);
     text-transform: none;
     letter-spacing: -0.03em;
     line-height: 1.08;
@@ -135,7 +136,7 @@
   .panel {
     background: var(--panel);
     border: 1px solid var(--border);
-    border-radius: 24px;
+    border-radius: 22px;
     box-shadow: var(--shadow);
     padding: 1em 1.15em;
   }
@@ -279,7 +280,7 @@
   }
 
   .reveal .speaker-controls-notes {
-    font-family: Tahoma, Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 16px;
     line-height: 1.6;
   }
@@ -522,7 +523,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
 <script>
   Reveal.initialize({
     hash: true,
@@ -535,7 +535,7 @@
     width: 1280,
     height: 720,
     margin: 0.08,
-    plugins: [RevealNotes, RevealHighlight]
+    plugins: [RevealNotes]
   });
 </script>
 </body>

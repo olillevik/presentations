@@ -5,37 +5,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI-Augmented Development: Lessons from the Trenches</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" id="theme">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap');
 
   :root {
+    --ss-purple: #4d1d82;
+    --ss-dark-purple: #2a1449;
+    --ss-bg-purple: #ede9f2;
+    --ss-bg-beige: #fdf2e5;
+    --ss-black: #1d1d1b;
+    --ss-orange: #f07d00;
+    --ss-grey: #a8a8a7;
+    --font-heading: 'Hurme Geometric Sans 4', Tahoma, Arial, sans-serif;
+    --font-body: 'Hurme Geometric Sans 3', Tahoma, Arial, sans-serif;
     --r-background-color: #ffffff;
-    --r-main-color: #1d1d1b;
-    --r-heading-color: #2a1449;
-    --r-link-color: #4d1d82;
-    --r-selection-background-color: #ede9f2;
-    --accent: #4d1d82;
-    --accent-warm: #f07d00;
-    --accent-green: #f07d00;
-    --accent-dim: #a8a8a7;
-    --surface: rgba(255, 255, 255, 0.92);
-    --surface-strong: #ffffff;
+    --r-main-color: var(--ss-black);
+    --r-heading-color: var(--ss-dark-purple);
+    --r-link-color: var(--ss-purple);
+    --r-selection-background-color: var(--ss-bg-purple);
+    --accent: var(--ss-purple);
+    --accent-warm: var(--ss-orange);
+    --accent-green: var(--ss-orange);
+    --accent-dim: var(--ss-grey);
+    --surface: rgba(255, 255, 255, 0.95);
     --surface-border: rgba(42, 20, 73, 0.12);
     --text-soft: #5c5860;
-    --shadow: 0 26px 70px rgba(42, 20, 73, 0.12);
+    --shadow: 0 16px 40px rgba(42, 20, 73, 0.08);
   }
 
   html {
     background:
-      radial-gradient(circle at top left, rgba(77, 29, 130, 0.12), transparent 28%),
-      radial-gradient(circle at bottom right, rgba(240, 125, 0, 0.12), transparent 24%),
-      linear-gradient(135deg, #ffffff 0%, #fdf2e5 58%, #ede9f2 100%);
+      radial-gradient(circle at top left, rgba(77, 29, 130, 0.08), transparent 24%),
+      radial-gradient(circle at bottom right, rgba(240, 125, 0, 0.08), transparent 20%),
+      linear-gradient(135deg, #ffffff 0%, #fdf2e5 64%, #ede9f2 100%);
   }
 
   .reveal {
-    font-family: Tahoma, Arial, sans-serif;
+    font-family: var(--font-body);
     font-weight: 400;
     font-size: 31px;
   }
@@ -45,7 +51,7 @@
   }
 
   .reveal h1, .reveal h2, .reveal h3 {
-    font-family: Tahoma, Arial, sans-serif;
+    font-family: var(--font-heading);
     font-weight: 700;
     letter-spacing: -0.03em;
     text-transform: none;
@@ -108,7 +114,7 @@
   .reveal .card {
     background: var(--surface);
     border: 1px solid var(--surface-border);
-    border-radius: 24px;
+    border-radius: 22px;
     padding: 1.2em 1.5em;
     margin: 0.5em 0;
     text-align: left;
@@ -138,7 +144,7 @@
   .reveal .pipeline-block {
     background: var(--surface);
     border: 1px solid var(--surface-border);
-    border-radius: 24px;
+    border-radius: 22px;
     padding: 0.8em 0.9em 0.9em;
     box-shadow: var(--shadow);
   }
@@ -218,22 +224,6 @@
     line-height: 1.4;
   }
 
-  .reveal .flow-arrow {
-    font-size: 1.5em;
-    color: var(--accent-dim);
-    margin: 0 0.2em;
-  }
-
-  .reveal .flow-step {
-    display: inline-block;
-    background: rgba(237, 233, 242, 0.82);
-    border: 1px solid var(--surface-border);
-    border-radius: 999px;
-    padding: 0.3em 0.6em;
-    font-size: 0.7em;
-    font-family: 'JetBrains Mono', monospace;
-  }
-
   .reveal .section-label {
     font-size: 0.5em;
     text-transform: uppercase;
@@ -267,7 +257,7 @@
   .reveal .transition-panel {
     background: var(--surface);
     border: 1px solid var(--surface-border);
-    border-radius: 24px;
+    border-radius: 22px;
     padding: 0.9em 1.05em;
     box-shadow: var(--shadow);
   }
@@ -323,9 +313,9 @@
   }
 
   .reveal .inspire-box {
-    background: rgba(253, 242, 229, 0.95);
+    background: rgba(253, 242, 229, 0.9);
     border: 1px solid rgba(240, 125, 0, 0.18);
-    border-radius: 24px;
+    border-radius: 22px;
     padding: 1.5em 2em;
     margin-top: 1em;
     text-align: left;
@@ -337,6 +327,101 @@
   .reveal .mono {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.85em;
+  }
+
+  .reveal .body-xs {
+    font-size: 0.62em;
+  }
+
+  .reveal .body-sm {
+    font-size: 0.7em;
+  }
+
+  .reveal .body-md {
+    font-size: 0.75em;
+  }
+
+  .reveal .body-base {
+    font-size: 0.8em;
+  }
+
+  .reveal .body-base-plus {
+    font-size: 0.85em;
+  }
+
+  .reveal .body-lg {
+    font-size: 0.92em;
+  }
+
+  .reveal .body-xl {
+    font-size: 0.95em;
+  }
+
+  .reveal .body-xxl {
+    font-size: 1.1em;
+  }
+
+  .reveal .body-hero {
+    font-size: 1.2em;
+  }
+
+  .reveal .copy-tight {
+    line-height: 1.32;
+  }
+
+  .reveal .copy-relaxed {
+    line-height: 1.45;
+  }
+
+  .reveal .text-center {
+    text-align: center;
+  }
+
+  .reveal .text-left {
+    text-align: left;
+  }
+
+  .reveal .warm-heading {
+    color: var(--accent-warm);
+  }
+
+  .reveal .compact-note {
+    margin-top: 0.9em;
+  }
+
+  .reveal .context-tools {
+    margin-top: 0.55em;
+  }
+
+  .reveal .statement-stack p {
+    margin: 0.2em 0;
+  }
+
+  .reveal .loop-list {
+    margin-top: 1.2em;
+  }
+
+  .reveal .loop-list p {
+    margin: 0.38em 0;
+    font-size: 0.92em;
+    font-weight: 600;
+  }
+
+  .reveal .loop-list p:last-child {
+    font-weight: 700;
+  }
+
+  .reveal .autonomy-stack p {
+    margin: 0.32em 0;
+    font-size: 0.92em;
+  }
+
+  .reveal .autonomy-stack p:last-child {
+    font-size: 0.98em;
+  }
+
+  .reveal .takeaway-card h3 {
+    font-size: 1.1em;
   }
 
   .reveal section {
@@ -386,7 +471,7 @@
   }
 
   .reveal .speaker-controls-notes {
-    font-family: Tahoma, Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 16px;
     line-height: 1.6;
   }
@@ -437,11 +522,11 @@
   <div class="section-label">The Shift</div>
   <h2>A race condition in CI</h2>
   <br>
-  <p style="font-size: 0.8em;">Builds took 20+ minutes.<br>Failed sporadically. Nobody knew why.</p>
+  <p class="body-base">Builds took 20+ minutes.<br>Failed sporadically. Nobody knew why.</p>
   <br>
-  <p style="font-size: 0.8em;">A senior dev dug into it.<br>Couldn't find it. Said it wasn't worth the time.</p>
+  <p class="body-base">A senior dev dug into it.<br>Couldn't find it. Said it wasn't worth the time.</p>
   <br>
-  <p style="font-size: 0.85em;">I fed the code to an LLM.<br><span class="highlight-word">Found in a minute.</span></p>
+  <p class="body-base-plus">I fed the code to an LLM.<br><span class="highlight-word">Found in a minute.</span></p>
   <aside class="notes">
     year ago
     <br>senior dev knew code
@@ -454,7 +539,7 @@
 <section>
   <h2>That was a year ago</h2>
   <br>
-  <p style="font-size: 1.1em;">Today, I don't write code by hand anymore.</p>
+  <p class="body-xxl">Today, I don't write code by hand anymore.</p>
   <aside class="notes">
     no agent then
     <br>talk: what changed
@@ -514,8 +599,8 @@
   <br>
   <p>The more the AI can see,<br>the better it performs</p>
   <br>
-  <p style="font-size: 0.75em;">But context is also <span class="highlight-warm">finite</span></p>
-  <p class="dim" style="font-size: 0.75em;">The AI has a limited window. What's in that window<br>determines the quality of the output.</p>
+  <p class="body-md">But context is also <span class="highlight-warm">finite</span></p>
+  <p class="dim body-md">The AI has a limited window. What's in that window<br>determines the quality of the output.</p>
   <aside class="notes">
     relevant context
     <br>choose what is loaded
@@ -544,16 +629,16 @@
   <h2>...within safe boundaries</h2>
   <div class="card-grid">
     <div class="card">
-      <h3 style="color: var(--accent-warm);">Read vs. write</h3>
+      <h3 class="warm-heading">Read vs. write</h3>
       <p>Can it see the database? Good.<br>Can it drop tables in production? Think twice.</p>
     </div>
     <div class="card">
-      <h3 style="color: var(--accent-warm);">Sandboxing</h3>
+      <h3 class="warm-heading">Sandboxing</h3>
       <p>Separate contexts by capability.<br>The one reading prod logs shouldn't<br>also be fetching from the internet.</p>
     </div>
   </div>
   <br>
-  <p class="dim" style="font-size: 0.7em;">Security is a big topic — secrets, data leakage, prompt injection, access control.<br>Calibrate to your project's risk appetite.</p>
+  <p class="dim body-sm">Security is a big topic — secrets, data leakage, prompt injection, access control.<br>Calibrate to your project's risk appetite.</p>
   <aside class="notes">
     <br>prod read
     <br>test freedom
@@ -573,11 +658,11 @@
     <div class="transition-panel">
       <span class="transition-label">On demand</span>
       <p class="transition-value"><span class="highlight-word">Load what you need.</span></p>
-      <p class="dim" style="font-size: 0.62em; margin-top: 0.55em;"><span class="mono">/git-commit</span> &middot; <span class="mono">/query-logs</span> &middot; <span class="mono">/check-ticket</span> &middot; <span class="mono">/wiki</span> &middot; <span class="mono">/review</span></p>
+      <p class="dim body-xs context-tools"><span class="mono">/git-commit</span> &middot; <span class="mono">/query-logs</span> &middot; <span class="mono">/check-ticket</span> &middot; <span class="mono">/wiki</span> &middot; <span class="mono">/review</span></p>
     </div>
   </div>
   <br>
-  <p class="dim" style="font-size: 0.75em;">Keep default context tiny. Pull in the rest when needed.</p>
+  <p class="dim body-md">Keep default context tiny. Pull in the rest when needed.</p>
   <aside class="notes">
     <br>always-loaded costs context
     <br>shareable setup
@@ -593,7 +678,7 @@
     <p class="hub-support">Tickets. CI. Logs. Docs. Code. Tests.</p>
   </div>
   <br>
-  <p style="font-size: 0.8em;">I direct. <span class="highlight-word">It travels.</span></p>
+  <p class="body-base">I direct. <span class="highlight-word">It travels.</span></p>
   <aside class="notes">
     <br>less tab-hopping
     <br>attention stays here
@@ -605,11 +690,11 @@
 <!-- ============================================ -->
 <section>
   <h2>The loop</h2>
-  <div style="margin-top: 1.2em;">
-    <p style="font-size: 0.92em; margin: 0.38em 0; font-weight: 600;">We plan together.</p>
-    <p style="font-size: 0.92em; margin: 0.38em 0; font-weight: 600;">The AI executes.</p>
-    <p style="font-size: 0.92em; margin: 0.38em 0; font-weight: 600;">We review together.</p>
-    <p style="font-size: 0.92em; margin: 0.38em 0; font-weight: 700;"><span class="highlight-word">I decide.</span></p>
+  <div class="loop-list">
+    <p>We plan together.</p>
+    <p>The AI executes.</p>
+    <p>We review together.</p>
+    <p><span class="highlight-word">I decide.</span></p>
   </div>
   <aside class="notes">
     simple and hard tasks fit same loop
@@ -621,8 +706,8 @@
   <section>
     <h2>Good engineering discipline makes the AI stronger</h2>
     <br>
-    <div class="card" style="text-align: center;">
-      <p style="font-size: 0.95em;">
+    <div class="card text-center">
+      <p class="body-xl">
         The agent gets stronger inside a<br><span class="highlight-word">verification loop.</span>
       </p>
     </div>
@@ -683,7 +768,7 @@
         </div>
       </div>
     </div>
-    <p class="dim" style="font-size: 0.7em; margin-top: 0.9em;">
+    <p class="dim body-sm compact-note">
       Deterministic checks stay deterministic. AI adds leverage in review and runtime verification by using the same delivery signals.
     </p>
     <aside class="notes">
@@ -700,12 +785,12 @@
 <section>
   <h2>The bottleneck shifts</h2>
   <br>
-  <div>
-    <p style="font-size: 1em; margin: 0.2em 0;">As coding gets faster,</p>
-    <p style="font-size: 1.2em; margin: 0.2em 0;"><span class="highlight-word">the next constraint becomes the bottleneck.</span></p>
+  <div class="statement-stack">
+    <p>As coding gets faster,</p>
+    <p class="body-hero"><span class="highlight-word">the next constraint becomes the bottleneck.</span></p>
   </div>
   <br>
-  <p class="dim" style="font-size: 0.7em;">Review. CI. Clarity. Handoffs. Decision speed.</p>
+  <p class="dim body-sm">Review. CI. Clarity. Handoffs. Decision speed.</p>
   <aside class="notes">
     coding faster != delivery that much faster
     <br>optimize the whole system
@@ -716,7 +801,7 @@
   <h2>Example: Code review</h2>
   <div class="versus">
     <div class="card">
-      <h3 style="color: var(--accent-warm);">Human reviewer</h3>
+      <h3 class="warm-heading">Human reviewer</h3>
       <p>Catches design issues, intent problems,<br>architectural concerns.<br>But has limited patience for<br>repetitive checks.</p>
     </div>
     <div class="versus-divider">+</div>
@@ -725,7 +810,7 @@
       <p>Patient. Thorough.<br>Follows the checklist every time.<br>Conventions, error handling,<br>edge cases — never skips one.</p>
     </div>
   </div>
-  <p style="font-size: 0.75em; margin-top: 1em;">
+  <p class="body-md compact-note">
     Not either/or — <span class="highlight-word">both</span>. AI catches the systematic stuff.<br>Humans focus on design, intent, and judgment.
   </p>
   <aside class="notes">
@@ -737,13 +822,13 @@
 <section>
   <h2>We tried full autonomy</h2>
   <br>
-  <div>
-    <p style="font-size: 0.92em; margin: 0.32em 0;">Easy tasks were faster from my CLI.</p>
-    <p style="font-size: 0.92em; margin: 0.32em 0;">Hard tasks still needed me.</p>
-    <p style="font-size: 0.98em; margin: 0.32em 0;"><span class="highlight-word">That left very little for Tinker to do.</span></p>
+  <div class="autonomy-stack">
+    <p>Easy tasks were faster from my CLI.</p>
+    <p>Hard tasks still needed me.</p>
+    <p><span class="highlight-word">That left very little for Tinker to do.</span></p>
   </div>
   <br>
-  <p class="dim" style="font-size: 0.75em;">Today, augmentation is more useful than autonomy.</p>
+  <p class="dim body-md">Today, augmentation is more useful than autonomy.</p>
   <aside class="notes">
     ticket to PR without human
     <br>sounded obvious at first
@@ -762,7 +847,7 @@
   <p>Don't wait for permission to start learning</p>
   <br>
   <p><span class="highlight-word">The learning curve is real</span></p>
-  <p class="dim" style="font-size: 0.75em;">You get measurably better at working with AI<br>over time.</p>
+  <p class="dim body-md">You get measurably better at working with AI<br>over time.</p>
   <aside class="notes">
     month one vs month three
     <br>ask it to explain a module
@@ -777,7 +862,7 @@
     <li><span class="highlight-green">Room to experiment</span> — make sure policies allow it</li>
   </ul>
   <br>
-  <p class="dim" style="font-size: 0.75em;">We need to learn this while the technology is moving.</p>
+  <p class="dim body-md">We need to learn this while the technology is moving.</p>
   <aside class="notes">
     policies should enable learning
     <br>forms, caps, blockers slow it down
@@ -792,7 +877,7 @@
   <br>
   <div class="inspire-box">
     <p>We cannot predict exactly what comes next.</p>
-    <p style="margin-top: 0.8em;"><span class="highlight-green">But the people who learn to work with AI now<br>will be best prepared for it.</span></p>
+    <p class="compact-note"><span class="highlight-green">But the people who learn to work with AI now<br>will be best prepared for it.</span></p>
   </div>
   <aside class="notes">
     moving fast
@@ -803,16 +888,16 @@
 <section>
   <h2>Takeaways</h2>
   <br>
-  <div class="card" style="text-align: center;">
-    <h3 style="font-size: 1.1em;">1. Access creates leverage</h3>
+  <div class="card takeaway-card text-center">
+    <h3>1. Access creates leverage</h3>
     <p>Not just better prompts. You get more leverage with access.</p>
   </div>
-  <div class="card" style="text-align: center;">
-    <h3 style="font-size: 1.1em;">2. Humans with AI beat either alone</h3>
+  <div class="card takeaway-card text-center">
+    <h3>2. Humans with AI beat either alone</h3>
     <p>Today, augmentation is more valuable than autonomy.</p>
   </div>
-  <div class="card" style="text-align: center;">
-    <h3 style="font-size: 1.1em;">3. The bottleneck shifts</h3>
+  <div class="card takeaway-card text-center">
+    <h3>3. The bottleneck shifts</h3>
     <p>As coding gets faster, review, CI, clarity, handoffs, and decision speed matter more.</p>
   </div>
   <aside class="notes">
@@ -835,8 +920,8 @@
 <!-- ============================================ -->
 <section>
   <h2>Backup: Hallucination &amp; trust</h2>
-  <div class="card" style="text-align: left;">
-    <p style="font-size: 0.8em;">
+  <div class="card text-left">
+    <p class="body-base copy-relaxed">
       <span class="highlight-word">AI can be convincingly wrong.</span><br><br>
       Put it inside a feedback loop that catches mistakes.<br><br>
       The same harness that protects you from human bugs protects you from AI bugs.
@@ -849,8 +934,8 @@
 
 <section>
   <h2>Backup: Junior developers</h2>
-  <div class="card" style="text-align: left;">
-    <p style="font-size: 0.8em;">
+  <div class="card text-left">
+    <p class="body-base copy-relaxed">
       <span class="highlight-word">The concern</span> — "If AI writes the code, how do juniors learn?"<br><br>
       <span class="highlight-word">The shift</span> — juniors still learn by reading, reviewing, and understanding code. AI changes who writes it, not who needs to understand it.<br><br>
       <span class="highlight-word">The opportunity</span> — juniors working with AI get exposed to more patterns, faster. They review more code than they could write. The learning curve changes shape, it doesn't disappear.
@@ -869,7 +954,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
 <script>
   Reveal.initialize({
     hash: true,
@@ -882,7 +966,7 @@
     width: 1280,
     height: 720,
     margin: 0.1,
-    plugins: [RevealNotes, RevealHighlight]
+    plugins: [RevealNotes]
   });
 </script>
 </body>

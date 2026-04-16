@@ -5,18 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Presentations</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap');
-
     :root {
-      --bg: #f6f1e8;
-      --bg-accent: #ece2d0;
-      --text: #1f1b18;
-      --muted: #6b655f;
-      --card: rgba(255, 251, 245, 0.9);
-      --border: rgba(31, 27, 24, 0.12);
-      --accent: #1f6f78;
-      --accent-warm: #9a5b2e;
-      --shadow: 0 28px 60px rgba(73, 52, 28, 0.12);
+      --ss-purple: #4d1d82;
+      --ss-dark-purple: #2a1449;
+      --ss-bg-purple: #ede9f2;
+      --ss-bg-beige: #fdf2e5;
+      --ss-black: #1d1d1b;
+      --ss-orange: #f07d00;
+      --font-heading: 'Hurme Geometric Sans 4', Tahoma, Arial, sans-serif;
+      --font-body: 'Hurme Geometric Sans 3', Tahoma, Arial, sans-serif;
+      --text: var(--ss-black);
+      --muted: #635e69;
+      --card: rgba(255, 255, 255, 0.95);
+      --border: rgba(77, 29, 130, 0.14);
+      --accent: var(--ss-purple);
+      --accent-warm: var(--ss-orange);
+      --shadow: 0 16px 40px rgba(42, 20, 73, 0.08);
     }
 
     * {
@@ -26,12 +30,12 @@
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: 'Manrope', sans-serif;
+      font-family: var(--font-body);
       color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(31, 111, 120, 0.10), transparent 30%),
-        radial-gradient(circle at bottom right, rgba(154, 91, 46, 0.10), transparent 28%),
-        linear-gradient(135deg, var(--bg) 0%, var(--bg-accent) 100%);
+        radial-gradient(circle at top left, rgba(77, 29, 130, 0.08), transparent 24%),
+        radial-gradient(circle at bottom right, rgba(240, 125, 0, 0.08), transparent 20%),
+        linear-gradient(135deg, #ffffff 0%, var(--ss-bg-beige) 64%, var(--ss-bg-purple) 100%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -48,6 +52,7 @@
 
     h1 {
       margin: 0;
+      font-family: var(--font-heading);
       font-size: clamp(2.4rem, 5vw, 4.5rem);
       line-height: 0.95;
       letter-spacing: -0.05em;
@@ -74,7 +79,7 @@
       color: inherit;
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 28px;
+      border-radius: 22px;
       padding: 24px;
       box-shadow: var(--shadow);
       transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
@@ -82,9 +87,9 @@
 
     .card:hover,
     .card:focus-visible {
-      transform: translateY(-4px);
-      box-shadow: 0 34px 70px rgba(73, 52, 28, 0.16);
-      border-color: rgba(31, 111, 120, 0.28);
+      transform: translateY(-3px);
+      box-shadow: 0 22px 48px rgba(42, 20, 73, 0.12);
+      border-color: rgba(77, 29, 130, 0.24);
       outline: none;
     }
 
@@ -100,6 +105,7 @@
 
     h2 {
       margin: 0 0 10px;
+      font-family: var(--font-heading);
       font-size: 1.5rem;
       line-height: 1.1;
       letter-spacing: -0.03em;
