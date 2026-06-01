@@ -135,6 +135,44 @@
     margin-top: 1em;
   }
 
+  .reveal .principle-triad {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(0.8em, 2vw, 1.3em);
+    margin-top: 1.15em;
+    align-items: start;
+  }
+
+  .reveal .principle-item {
+    text-align: left;
+  }
+
+  .reveal .principle-item::before {
+    content: "";
+    display: block;
+    width: clamp(2.2em, 5vw, 3.2em);
+    height: 0.12em;
+    margin-bottom: 0.5em;
+    border-radius: 999px;
+    background: var(--accent);
+    opacity: 0.5;
+  }
+
+  .reveal .principle-item h3 {
+    margin: 0;
+    font-size: clamp(0.82em, 1.6vw, 0.98em);
+    line-height: 1.2;
+  }
+
+  .reveal .principle-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .reveal .principle-link:hover {
+    color: var(--accent);
+  }
+
   .reveal .pipeline-stack {
     display: grid;
     gap: 0.85em;
@@ -421,7 +459,26 @@
   }
 
   .reveal .takeaway-card h3 {
-    font-size: 1.1em;
+    margin: 0 0 0.18em;
+    font-size: clamp(0.88em, 1.5vw, 1.02em);
+  }
+
+  .reveal .takeaway-card {
+    padding: clamp(0.55em, 1.1vw, 0.8em) clamp(0.8em, 1.5vw, 1.1em);
+    margin: clamp(0.12em, 0.35vw, 0.24em) 0;
+  }
+
+  .reveal .takeaway-card p {
+    margin: 0;
+    font-size: clamp(0.68em, 1.1vw, 0.78em);
+    line-height: 1.22;
+  }
+
+  .reveal .takeaway-stack {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(0.08em, 0.25vw, 0.2em);
   }
 
   .reveal section {
@@ -480,6 +537,7 @@
     .reveal .versus,
     .reveal .card-grid,
     .reveal .card-grid-3,
+    .reveal .principle-triad,
     .reveal .transition-grid,
     .reveal .context-flow,
     .reveal .pipeline {
@@ -519,7 +577,6 @@
 </section>
 
 <section>
-  <div class="section-label">The Shift</div>
   <h2>A race condition in CI</h2>
   <br>
   <p class="body-base">Builds took 20+ minutes.<br>Failed sporadically. Nobody knew why.</p>
@@ -594,7 +651,6 @@
 <!-- ACT 2: HOW WE WORK -->
 <!-- ============================================ -->
 <section>
-  <div class="section-label">How We Work</div>
   <h2>Context is everything</h2>
   <br>
   <p>The more the AI can see,<br>the better it performs</p>
@@ -727,7 +783,6 @@
   </section>
 
   <section>
-    <div class="section-label">Verification loop</div>
     <h2>Example delivery loop</h2>
     <div class="pipeline-stack">
       <div class="pipeline-block">
@@ -783,6 +838,139 @@
 </section>
 
 <section>
+  <div class="card text-center">
+    <p class="body-xl">
+      "Complexity is anything related to the structure of a software system<br>
+      that makes it hard to understand and modify the system."
+    </p>
+    <p class="dim body-sm">- John Ousterhout</p>
+  </div>
+  <aside class="notes">
+    agents have to infer local rules from structure, naming, tests, and prompts
+    <br>that gets fragile when the system is complex, language is ambiguous, or legacy code sends mixed signals
+    <br>this is why access and feedback are not enough
+    <br>the team has to make key judgment explicit
+  </aside>
+</section>
+
+<section>
+  <h2>Humans build understanding. Agents need instructions.</h2>
+  <br>
+  <div class="card text-center">
+    <p class="body-xl">
+      Teams carry forward shared understanding over time.<br>
+      Agents only get what we make <span class="highlight-word">explicit</span>.
+    </p>
+  </div>
+  <p class="dim body-sm compact-note">
+    Access, context, and feedback matter. They still do not replace explicit guidance about what we are building, how we build it, and how the system should hold together.
+  </p>
+  <aside class="notes">
+    humans remember prior decisions
+    <br>agents start fresh
+  </aside>
+</section>
+
+<section>
+  <section>
+    <h2>How team knowledge becomes agent guidance</h2>
+    <div class="card">
+      <ul class="fragment-list">
+        <li><span class="highlight-green">Identify</span> the team judgment worth preserving</li>
+        <li><span class="highlight-green">Encode</span> it close to the work so agents can actually use it</li>
+      </ul>
+    </div>
+    <aside class="notes">
+      this is the bridge slide
+      <br>main path message: tacit team knowledge has to be translated, not assumed
+      <br>if there is time or interest, go down into the branch
+      <br>if not, continue right in the main talk
+    </aside>
+  </section>
+
+  <section>
+    <h2>Three of my favorite skills</h2>
+    <div class="principle-triad">
+      <div class="principle-item">
+        <h3><a class="principle-link" href="https://www.skills.sh/mattpocock/skills/tdd">Testing behavior through public interfaces</a></h3>
+      </div>
+      <div class="principle-item">
+        <h3><a class="principle-link" href="https://www.skills.sh/mattpocock/skills/improve-codebase-architecture">Stable seams and deep modules</a></h3>
+      </div>
+      <div class="principle-item">
+        <h3><a class="principle-link" href="https://www.skills.sh/mattpocock/skills/grill-with-docs">Shared language, explicit concepts, clear responsibilities</a></h3>
+      </div>
+    </div>
+    <p class="dim body-sm compact-note">
+      Do not try to encode everything. Start with the few judgments that most strongly shape behavior.
+    </p>
+    <aside class="notes">
+      use AI Academy as the running example
+      <br>these are some of the strongest public patterns we seem to have right now
+      <br>test behavior through public interfaces, not internals
+      <br>good tests survive refactoring when behavior stays the same
+      <br>John Ousterhout uses the term deep modules
+      <br>a deep module hides a lot of behavior behind a small interface
+      <br>they are good because they keep change local
+      <br>inspiration from tdd, deepen-codebase-architecture, grill-with-docs, and karpathy-style heuristics
+      <br>not claiming universal best practice
+    </aside>
+  </section>
+</section>
+
+<section>
+  <section>
+    <h2>Continuous improvement of instructions</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>Quality</h3>
+        <p>Is the instruction clear and specific?</p>
+      </div>
+      <div class="card">
+        <h3>Spread</h3>
+        <p>Does everyone who could benefit from it know about it and where to find it?</p>
+      </div>
+    </div>
+    <p class="body-md">Curate it over time by improving, spreading, and pruning it.</p>
+    <aside class="notes">
+      measure improvement through quality and spread
+      <br>curate instructions over time
+      <br>optional drill-down below: how guidance spreads
+    </aside>
+  </section>
+
+  <section>
+    <h2>Sharing and finding instructions</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>In the repo</h3>
+        <p>AGENT.md, ADRs, docs, and conventions close to the work.</p>
+      </div>
+      <div class="card">
+        <h3>Shared through GitHub</h3>
+        <p>Team repos, shared dotfiles, internal examples, and reusable assets.</p>
+      </div>
+      <div class="card">
+        <h3>Company distribution</h3>
+        <p><a href="https://agentmarketplace.dpservices.app/">Internal marketplaces</a>, catalogs, and approved templates.</p>
+      </div>
+      <div class="card">
+        <h3>External sources</h3>
+        <p>Public repos, talks, community libraries, and curated sites like <a href="https://www.skills.sh/">skills.sh</a>.</p>
+      </div>
+    </div>
+    <p class="dim body-sm compact-note">
+      Teams need ways to distribute reusable guidance, not just write it once.
+    </p>
+    <aside class="notes">
+      keep this broader than skills
+      <br>skills are one mechanism among several
+      <br>examples: a shared team repo, personal dotfiles repos, internal marketplaces, public repositories, talks, and curation sites
+    </aside>
+  </section>
+</section>
+
+<section>
   <h2>The bottleneck shifts</h2>
   <br>
   <div class="statement-stack">
@@ -828,7 +1016,7 @@
     <p><span class="highlight-word">That left very little for Tinker to do.</span></p>
   </div>
   <br>
-  <p class="dim body-md">Today, augmentation is more useful than autonomy.</p>
+  <p class="dim body-md">Start with AI augmentation; increase autonomy through feedback loops.</p>
   <aside class="notes">
     ticket to PR without human
     <br>sounded obvious at first
@@ -886,22 +1074,27 @@
 </section>
 
 <section>
-  <h2>Takeaways</h2>
-  <br>
-  <div class="card takeaway-card text-center">
-    <h3>1. Access creates leverage</h3>
-    <p>Not just better prompts. You get more leverage with access.</p>
-  </div>
-  <div class="card takeaway-card text-center">
-    <h3>2. Humans with AI beat either alone</h3>
-    <p>Today, augmentation is more valuable than autonomy.</p>
-  </div>
-  <div class="card takeaway-card text-center">
-    <h3>3. The bottleneck shifts</h3>
-    <p>As coding gets faster, review, CI, clarity, handoffs, and decision speed matter more.</p>
+  <div class="takeaway-stack">
+    <div class="card takeaway-card text-center">
+      <h3>Access creates leverage</h3>
+      <p>Not just better prompts. You get more leverage with access.</p>
+    </div>
+    <div class="card takeaway-card text-center">
+      <h3>Humans with AI beat either alone</h3>
+      <p>Start with AI augmentation; increase autonomy through feedback loops.</p>
+    </div>
+    <div class="card takeaway-card text-center">
+      <h3>Agents need explicit instructions</h3>
+      <p>Teams need to encode product intent, verification style, and architecture.</p>
+    </div>
+    <div class="card takeaway-card text-center">
+      <h3>The bottleneck shifts</h3>
+      <p>As coding gets faster, review, CI, clarity, handoffs, and decision speed matter more.</p>
+    </div>
   </div>
   <aside class="notes">
     <br>access enables feedback loops
+    <br>instructions reduce misalignment
     <br>speed shifts the bottleneck
   </aside>
 </section>
