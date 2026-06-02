@@ -606,7 +606,7 @@
 </section>
 
 <section>
-  <h2>A race condition in CI</h2>
+  <h2>Once upon a time</h2>
   <br>
   <p class="body-base">Builds took 20+ minutes.<br>Failed sporadically. Nobody knew why.</p>
   <br>
@@ -634,15 +634,15 @@
 </section>
 
 <section>
-  <h2>This isn't autocomplete anymore</h2>
+  <h2>From inline suggestions to agentic behavior</h2>
   <div class="transition-grid">
     <div class="transition-panel">
-      <span class="transition-label">Then</span>
+      <span class="transition-label">Inline</span>
       <p class="transition-value">Suggest the next line.</p>
     </div>
     <div class="transition-arrow">&rarr;</div>
     <div class="transition-panel">
-      <span class="transition-label">Now</span>
+      <span class="transition-label">Agentic</span>
       <p class="transition-value">Read context, plan the work, edit files, run checks, and iterate.</p>
     </div>
   </div>
@@ -680,58 +680,19 @@
 <!-- ACT 2: HOW WE WORK -->
 <!-- ============================================ -->
 <section>
-  <h2>Context is everything</h2>
-  <br>
-  <p>The more the AI can see,<br>the better it performs</p>
-  <br>
-  <p class="body-md">But context is also <span class="highlight-warm">finite</span></p>
-  <p class="dim body-md">The AI has a limited window. What's in that window<br>determines the quality of the output.</p>
-  <aside class="notes">
-    relevant context
-    <br>choose what is loaded
-  </aside>
-</section>
+  <section>
+    <h2>Context is everything</h2>
+    <br>
+    <p>The more the AI can see,<br>the better it performs</p>
+    <br>
+    <p class="body-md">But context is also <span class="highlight-warm">finite</span></p>
+    <p class="dim body-md">The AI has a limited window. What's in that window<br>determines the quality of the output.</p>
+    <aside class="notes">
+      relevant context
+      <br>choose what is loaded
+    </aside>
+  </section>
 
-<section>
-  <h2>Give it broad access to what it needs</h2>
-  <ul class="fragment-list">
-    <li><span class="highlight-word">Code</span> — repos, PRs, code search across repos</li>
-    <li><span class="highlight-word">Tickets</span> — the work to be done, requirements, context</li>
-    <li><span class="highlight-word">CI/CD</span> — build output, deployment status</li>
-    <li><span class="highlight-word">Logs &amp; monitoring</span> — what's happening in production</li>
-    <li><span class="highlight-word">Databases</span> — schema and data</li>
-    <li><span class="highlight-word">Documentation</span> — requirements, decisions, architecture</li>
-  </ul>
-  <aside class="notes">
-    code first
-    <br>biggest unlock by far
-    <br>ergonomics compound
-    <br>direct access beats copy/paste
-  </aside>
-</section>
-
-<section>
-  <h2>...within safe boundaries</h2>
-  <div class="card-grid">
-    <div class="card">
-      <h3 class="warm-heading">Read vs. write</h3>
-      <p>Can it see the database? Good.<br>Can it drop tables in production? Think twice.</p>
-    </div>
-    <div class="card">
-      <h3 class="warm-heading">Sandboxing</h3>
-      <p>Separate contexts by capability.<br>The one reading prod logs shouldn't<br>also be fetching from the internet.</p>
-    </div>
-  </div>
-  <br>
-  <p class="dim body-sm">Security is a big topic — secrets, data leakage, prompt injection, access control.<br>Calibrate to your project's risk appetite.</p>
-  <aside class="notes">
-    <br>prod read
-    <br>test freedom
-    <br>boundaries by risk appetite
-  </aside>
-</section>
-
-<section>
   <section>
     <h2>Managing context</h2>
     <br>
@@ -744,7 +705,7 @@
       <div class="transition-panel">
         <span class="transition-label">On demand</span>
         <p class="transition-value"><span class="highlight-word">Load what you need.</span></p>
-        <p class="dim body-xs context-tools"><span class="mono">/git-commit</span> &middot; <span class="mono">/query-logs</span> &middot; <span class="mono">/check-ticket</span> &middot; <span class="mono">/wiki</span> &middot; <span class="mono">/review</span></p>
+        <p class="dim body-xs context-tools"><span class="mono">/git-commit</span> &middot; <span class="mono">/query-logs</span> &middot; <span class="mono">/check-ticket</span><br><span class="mono">/query-db</span> &middot; <span class="mono">/query-metrics</span> &middot; <span class="mono">/review</span></p>
       </div>
     </div>
     <br>
@@ -792,6 +753,45 @@
       <br>slash commands docs for command vs skill distinction
     </aside>
   </section>
+</section>
+
+<section>
+  <h2>Give it broad access to what it needs</h2>
+  <ul class="fragment-list">
+    <li><span class="highlight-word">Code</span> — repos, PRs, code search across repos</li>
+    <li><span class="highlight-word">Tickets</span> — the work to be done, requirements, context</li>
+    <li><span class="highlight-word">CI/CD</span> — build output, deployment status</li>
+    <li><span class="highlight-word">Logs &amp; monitoring</span> — what's happening in production</li>
+    <li><span class="highlight-word">Databases</span> — schema and data</li>
+    <li><span class="highlight-word">Documentation</span> — requirements, decisions, architecture</li>
+  </ul>
+  <aside class="notes">
+    code first
+    <br>biggest unlock by far
+    <br>ergonomics compound
+    <br>direct access beats copy/paste
+  </aside>
+</section>
+
+<section>
+  <h2>...within safe boundaries</h2>
+  <div class="card-grid">
+    <div class="card">
+      <h3 class="warm-heading">Read vs. write</h3>
+      <p>Can it see the database? Good.<br>Can it drop tables in production? Think twice.</p>
+    </div>
+    <div class="card">
+      <h3 class="warm-heading">Sandboxing</h3>
+      <p>Separate contexts by capability.<br>The one reading prod logs shouldn't<br>also be fetching from the internet.</p>
+    </div>
+  </div>
+  <br>
+  <p class="dim body-sm">Security is a big topic — secrets, data leakage, prompt injection, access control.<br>Calibrate to your project's risk appetite.</p>
+  <aside class="notes">
+    <br>prod read
+    <br>test freedom
+    <br>boundaries by risk appetite
+  </aside>
 </section>
 
 <section>
@@ -1063,7 +1063,7 @@
     <div class="versus-divider">+</div>
     <div class="card">
       <h3>AI reviewer</h3>
-      <p>Patient. Thorough.<br>Follows the checklist every time.<br>Conventions, error handling,<br>edge cases — never skips one.</p>
+      <p>Patient. Thorough.<br>Better at following checklists.<br>Conventions, error handling,<br>edge cases — never skips one.</p>
     </div>
   </div>
   <p class="body-md compact-note">
@@ -1096,32 +1096,14 @@
 <!-- ACT 4: GETTING STARTED -->
 <!-- ============================================ -->
 <section>
-  <h2>Start now</h2>
-  <br>
-  <p>Don't wait for the "right" tool</p>
-  <p>Don't wait for the "right" time</p>
-  <p>Don't wait for permission to start learning</p>
-  <br>
-  <p><span class="highlight-word">The learning curve is real</span></p>
-  <p class="dim body-md">You get measurably better at working with AI<br>over time.</p>
-  <aside class="notes">
-    month one vs month three
-    <br>ask it to explain a module
-  </aside>
-</section>
-
-<section>
-  <h2>What developers need</h2>
+  <h2>Getting started</h2>
   <ul class="fragment-list">
-    <li><span class="highlight-green">Access</span> — let people use the tools</li>
-    <li><span class="highlight-green">Low friction</span> — no forms, no caps, no needless blockers</li>
-    <li><span class="highlight-green">Room to experiment</span> — make sure policies allow it</li>
+    <li><span class="highlight-green">Access</span></li>
+    <li><span class="highlight-green">Low friction</span></li>
+    <li><span class="highlight-green">Room to experiment</span></li>
   </ul>
-  <br>
-  <p class="dim body-md">We need to learn this while the technology is moving.</p>
   <aside class="notes">
-    policies should enable learning
-    <br>forms, caps, blockers slow it down
+    these are the conditions for getting started
   </aside>
 </section>
 
