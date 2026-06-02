@@ -431,6 +431,35 @@
     margin-top: 0.55em;
   }
 
+  .reveal .term-table-card {
+    padding: 0.85em 1.05em;
+  }
+
+  .reveal .term-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .reveal .term-table th,
+  .reveal .term-table td {
+    padding: 0.68em 0.8em;
+    border-bottom: 1px solid var(--surface-border);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .reveal .term-table th {
+    width: 24%;
+    color: var(--accent);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .reveal .term-table tr:last-child th,
+  .reveal .term-table tr:last-child td {
+    border-bottom: none;
+  }
+
   .reveal .statement-stack p {
     margin: 0.2em 0;
   }
@@ -703,27 +732,66 @@
 </section>
 
 <section>
-  <h2>Managing context</h2>
-  <br>
-  <div class="context-flow">
-    <div class="transition-panel">
-      <span class="transition-label">Default</span>
-      <p class="transition-value"><span class="highlight-word">As close to empty as possible.</span></p>
+  <section>
+    <h2>Managing context</h2>
+    <br>
+    <div class="context-flow">
+      <div class="transition-panel">
+        <span class="transition-label">Default</span>
+        <p class="transition-value"><span class="highlight-word">As close to empty as possible.</span></p>
+      </div>
+      <div class="transition-arrow">&rarr;</div>
+      <div class="transition-panel">
+        <span class="transition-label">On demand</span>
+        <p class="transition-value"><span class="highlight-word">Load what you need.</span></p>
+        <p class="dim body-xs context-tools"><span class="mono">/git-commit</span> &middot; <span class="mono">/query-logs</span> &middot; <span class="mono">/check-ticket</span> &middot; <span class="mono">/wiki</span> &middot; <span class="mono">/review</span></p>
+      </div>
     </div>
-    <div class="transition-arrow">&rarr;</div>
-    <div class="transition-panel">
-      <span class="transition-label">On demand</span>
-      <p class="transition-value"><span class="highlight-word">Load what you need.</span></p>
-      <p class="dim body-xs context-tools"><span class="mono">/git-commit</span> &middot; <span class="mono">/query-logs</span> &middot; <span class="mono">/check-ticket</span> &middot; <span class="mono">/wiki</span> &middot; <span class="mono">/review</span></p>
+    <br>
+    <p class="dim body-md">Keep default context tiny. Pull in the rest when needed.</p>
+    <aside class="notes">
+      <br>always-loaded costs context
+      <br>shareable setup
+      <br>focus stays on task
+      <br>optional deepening slide below if people want terms clarified
+    </aside>
+  </section>
+
+  <section>
+    <div class="card term-table-card">
+      <table class="term-table body-sm">
+        <tbody>
+          <tr>
+            <th scope="row">Prompt</th>
+            <td>The instruction in the current chat. It shapes the task now; if you pass one to a subagent, it is eager only for that subagent.</td>
+          </tr>
+          <tr>
+            <th scope="row">CLAUDE.md</th>
+            <td>Persistent instructions you write. Claude reads them at the start of every session, so they are eager-loaded by default.</td>
+          </tr>
+          <tr>
+            <th scope="row">Skill</th>
+            <td>Reusable instructions in <span class="mono">SKILL.md</span>. Claude can use them when relevant or you can invoke them directly; unlike <span class="mono">CLAUDE.md</span>, the body loads only when used.</td>
+          </tr>
+          <tr>
+            <th scope="row">Subagent</th>
+            <td>A specialized assistant that runs in its own context window, with its own system prompt, tool access, and permissions, then returns only the result.</td>
+          </tr>
+          <tr>
+            <th scope="row">Slash command</th>
+            <td>A <span class="mono">/name</span> entry point. It may invoke a built-in command or a skill; the slash itself is just the trigger, not the stored context.</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  </div>
-  <br>
-  <p class="dim body-md">Keep default context tiny. Pull in the rest when needed.</p>
-  <aside class="notes">
-    <br>always-loaded costs context
-    <br>shareable setup
-    <br>focus stays on task
-  </aside>
+    <aside class="notes">
+      <br>definitions adapted from Anthropic Claude Code docs
+      <br>memory for CLAUDE.md
+      <br>skills docs for on-demand loading
+      <br>subagents docs for separate context window
+      <br>slash commands docs for command vs skill distinction
+    </aside>
+  </section>
 </section>
 
 <section>
