@@ -390,6 +390,22 @@
     box-shadow: var(--shadow);
   }
 
+  .reveal .whiteboard-slide {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .reveal .whiteboard-slide img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+
   .reveal .mono {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.85em;
@@ -663,22 +679,33 @@
 </section>
 
 <section>
-  <h2>From inline suggestions to agentic behavior</h2>
-  <div class="transition-grid">
-    <div class="transition-panel">
-      <span class="transition-label">Inline</span>
-      <p class="transition-value">Suggest the next line.</p>
+  <section>
+    <h2>From chat bot to agentic behavior</h2>
+    <div class="transition-grid">
+      <div class="transition-panel">
+        <span class="transition-label">Inline</span>
+        <p class="transition-value">Suggest the next line.</p>
+      </div>
+      <div class="transition-arrow">&rarr;</div>
+      <div class="transition-panel">
+        <span class="transition-label">Agentic</span>
+        <p class="transition-value">Read context, plan the work, edit files, run checks, and iterate.</p>
+      </div>
     </div>
-    <div class="transition-arrow">&rarr;</div>
-    <div class="transition-panel">
-      <span class="transition-label">Agentic</span>
-      <p class="transition-value">Read context, plan the work, edit files, run checks, and iterate.</p>
-    </div>
-  </div>
-  <aside class="notes">
-    old mental model outdated
-    <br>new capabilities
-  </aside>
+    <aside class="notes">
+      discovering autocomplete
+      <br>chat bot: ask, reply, no direct access
+      <br>agent: reads context, uses tools, acts
+    </aside>
+  </section>
+
+  <section class="whiteboard-slide" data-background-color="#ffffff">
+    <img src="assets/chatbot-to-agentic-1.png" alt="Simple user-to-LLM sequence sketch showing no file access">
+  </section>
+
+  <section class="whiteboard-slide" data-background-color="#ffffff">
+    <img src="assets/chatbot-to-agentic-2.png" alt="Follow-up whiteboard sketch for the chatbot to agentic transition">
+  </section>
 </section>
 
 <section>
@@ -742,6 +769,10 @@
       <br>focus stays on task
       <br>optional deepening slide below if people want terms clarified
     </aside>
+  </section>
+
+  <section class="whiteboard-slide" data-background-color="#ffffff">
+    <img src="assets/context-usage-whiteboard.png" alt="Whiteboard sketch illustrating why low context usage matters">
   </section>
 
   <section>
