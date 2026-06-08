@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI-Augmented Development: Lessons from the Trenches</title>
+<title>AI-Augmented Development</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap');
@@ -641,7 +641,7 @@
 <section class="title-slide">
   <img class="ss-logo" src="../ai-in-software-delivery/assets/Sopra-Steria_logo_RGB_black-color.png" alt="Sopra Steria logo">
   <h1>AI-Augmented<br>Development</h1>
-  <p class="subtitle">Lessons from the Trenches</p>
+  <p class="subtitle">Once upon a time we wrote code by hand</p>
   <aside class="notes">
     developer to developer
     <br>not management pitch
@@ -651,49 +651,21 @@
 </section>
 
 <section>
-  <h2>Once upon a time</h2>
-  <br>
-  <p class="body-base">Builds took 20+ minutes.<br>Failed sporadically. Nobody knew why.</p>
-  <br>
-  <p class="body-base">A senior dev dug into it.<br>Couldn't find it. Said it wasn't worth the time.</p>
-  <br>
-  <p class="body-base-plus">I fed the code to an LLM.<br><span class="highlight-word">Found in a minute.</span></p>
-  <aside class="notes">
-    year ago
-    <br>senior dev knew code
-    <br>race in test setup
-    <br>paste into chat
-    <br>before agents
-  </aside>
-</section>
-
-<section>
-  <h2>That was a year ago</h2>
-  <br>
-  <p class="body-xxl">Today, I don't write code by hand anymore.</p>
-  <aside class="notes">
-    no agent then
-    <br>talk: what changed
-    <br>talk: how I work now
-  </aside>
-</section>
-
-<section>
   <section>
-    <h2>From chat bot to agentic behavior</h2>
+    <h2>What is an agent?</h2>
     <div class="transition-grid">
       <div class="transition-panel">
-        <span class="transition-label">Inline</span>
-        <p class="transition-value">Suggest the next line.</p>
+        <span class="transition-label">Chat bot</span>
+        <p class="transition-value">Based on prior knowledge</p>
       </div>
       <div class="transition-arrow">&rarr;</div>
       <div class="transition-panel">
         <span class="transition-label">Agentic</span>
-        <p class="transition-value">Read context, plan the work, edit files, run checks, and iterate.</p>
+        <p class="transition-value">Answer based on prior knowledge, the use of tools and ability to iterate</p>
       </div>
     </div>
     <aside class="notes">
-      discovering autocomplete
+      from autocomplete to solving problems and verifying the fix
       <br>chat bot: ask, reply, no direct access
       <br>agent: reads context, uses tools, acts
     </aside>
@@ -709,7 +681,7 @@
 </section>
 
 <section>
-  <h2>Three things converging</h2>
+  <h2>Augmenting AI</h2>
   <div class="convergence-grid">
     <div class="convergence-card">
       <h3>Better models</h3>
@@ -723,9 +695,7 @@
   </div>
   <br>
   <aside class="notes">
-    model jumps in months
-    <br>practice matters too
-    <br>better models reward better skills
+    The ways agentic behaviour improves
   </aside>
 </section>
 
@@ -734,15 +704,16 @@
 <!-- ============================================ -->
 <section>
   <section>
-    <h2>Context is everything</h2>
+    <h2>Context</h2>
     <br>
-    <p>The more the AI can see,<br>the better it performs</p>
+    <p>The more relevant information sent to the AI,<br>the better it performs</p>
     <br>
-    <p class="body-md">But context is also <span class="highlight-warm">finite</span></p>
+    <p class="body-md">Context is <span class="highlight-warm">finite</span></p>
     <p class="dim body-md">The AI has a limited window. What's in that window<br>determines the quality of the output.</p>
     <aside class="notes">
       relevant context
       <br>choose what is loaded
+      <br>within that window there is an even smaller window
     </aside>
   </section>
 
@@ -858,38 +829,6 @@
     <br>prod read
     <br>test freedom
     <br>boundaries by risk appetite
-  </aside>
-</section>
-
-<section>
-  <h2>Make it the hub</h2>
-  <br>
-  <div class="hub-focus">
-    <p class="hub-main"><span class="highlight-word">I stay in the agent.</span></p>
-    <p class="hub-support">Tickets. CI. Logs. Docs. Code. Tests.</p>
-  </div>
-  <br>
-  <p class="body-base">I direct. <span class="highlight-word">It travels.</span></p>
-  <aside class="notes">
-    <br>less tab-hopping
-    <br>attention stays here
-  </aside>
-</section>
-
-<!-- ============================================ -->
-<!-- ACT 3: THE NEW REALITY -->
-<!-- ============================================ -->
-<section>
-  <h2>The loop</h2>
-  <div class="loop-list">
-    <p>We plan together.</p>
-    <p>The AI executes.</p>
-    <p>We review together.</p>
-    <p><span class="highlight-word">I decide.</span></p>
-  </div>
-  <aside class="notes">
-    simple and hard tasks fit same loop
-    <br>human judgment stays central
   </aside>
 </section>
 
