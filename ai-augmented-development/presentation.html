@@ -744,20 +744,13 @@
   </section>
 
   <section>
-    <h2>The technique behind it: progressive disclosure</h2>
+    <h2>Progressive disclosure</h2>
     <br>
-    <div class="card-grid">
-      <div class="card">
-        <h3 class="warm-heading">CLAUDE.md / AGENT.md</h3>
-        <p>Don't inline the full architecture doc or ADR.<br>Link to it. The agent reads it only when the task touches it.</p>
-      </div>
-      <div class="card">
-        <h3 class="warm-heading">Skill</h3>
-        <p>Don't inline every edge case in <span class="mono">SKILL.md</span>.<br>Link to a reference file. The agent reads it only when relevant.</p>
-      </div>
+    <div class="card">
+      <p class="body-md">Organise instructions in layers.<br>Keep detail out of the main text — link it instead.<br>The agent follows the link only when it's relevant.</p>
     </div>
     <br>
-    <p class="dim body-sm">Same technique in both: text-heavy sub-parts stay behind a link, loaded only when relevant.</p>
+    <p class="dim body-sm">Less, more relevant context in the window &rarr; better results, lower cost.</p>
     <aside class="notes">
       not a Claude/opencode/OpenAI built-in artefact
       <br>a general technique for keeping context small: hide text-heavy detail behind links instead of inlining it
