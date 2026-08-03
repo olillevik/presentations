@@ -743,6 +743,28 @@
     </aside>
   </section>
 
+  <section>
+    <h2>The technique behind it: progressive disclosure</h2>
+    <br>
+    <div class="card-grid">
+      <div class="card">
+        <h3 class="warm-heading">CLAUDE.md / AGENT.md</h3>
+        <p>Don't inline the full architecture doc or ADR.<br>Link to it. The agent reads it only when the task touches it.</p>
+      </div>
+      <div class="card">
+        <h3 class="warm-heading">Skill</h3>
+        <p>Don't inline every edge case in <span class="mono">SKILL.md</span>.<br>Link to a reference file. The agent reads it only when relevant.</p>
+      </div>
+    </div>
+    <br>
+    <p class="dim body-sm">Same technique in both: text-heavy sub-parts stay behind a link, loaded only when relevant.</p>
+    <aside class="notes">
+      not a Claude/opencode/OpenAI built-in artefact
+      <br>a general technique for keeping context small: hide text-heavy detail behind links instead of inlining it
+      <br>applies within any instruction file, persistent or on-demand
+    </aside>
+  </section>
+
   <section class="whiteboard-slide" data-background-color="#ffffff">
     <img src="assets/context-usage-whiteboard.png" alt="Whiteboard sketch illustrating why low context usage matters">
   </section>
