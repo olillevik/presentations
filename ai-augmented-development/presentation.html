@@ -344,6 +344,10 @@
     line-height: 1.3;
   }
 
+  .reveal .transition-grid-2col {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
   .reveal .transition-arrow {
     display: flex;
     align-items: center;
@@ -651,7 +655,7 @@
 <section>
   <section>
     <h2>What is the difference between an agent and an LLM?</h2>
-    <div class="transition-grid">
+    <div class="transition-grid transition-grid-2col">
       <div class="transition-panel">
         <span class="transition-label">LLM</span>
         <p class="transition-value">Can only answer based on prior knowledge</p>
