@@ -76,6 +76,11 @@
     opacity: 0.45;
   }
 
+  .sketch-fill {
+    fill: var(--chalk);
+    stroke: none;
+  }
+
   .board-text {
     position: relative;
     padding: 0 70px;
@@ -244,6 +249,45 @@
 
 <section class="board-image">
   <img src="assets/sound-architecture.png" alt="Whiteboard sketch of the loop: issue, plan, implement, create PR, await review, squash and see it live in production; an easy to understand PR makes review simpler, /pr; humans and AIs make mistakes so alternate views help improve quality, /code-review plus human review">
+</section>
+
+<section>
+  <div class="board-box">
+    <svg class="sketch" viewBox="0 0 1080 460" preserveAspectRatio="none" aria-hidden="true">
+      <rect class="sketch-line" x="6" y="6" width="1068" height="448" rx="34"/>
+      <rect class="sketch-line sketch-line-echo" x="10" y="10" width="1062" height="440" rx="32"/>
+    </svg>
+    <svg class="sketch" viewBox="0 0 1080 460" role="img" aria-label="Simple sketch of a bug">
+      <g transform="translate(540 230) scale(1.25) translate(-200 -152.5)">
+        <path class="sketch-line" d="M184 44 Q168 26 146 14"/>
+        <path class="sketch-line" d="M216 44 Q232 26 254 14"/>
+        <circle class="sketch-fill" cx="146" cy="14" r="4"/>
+        <circle class="sketch-fill" cx="254" cy="14" r="4"/>
+        <circle class="sketch-line" cx="200" cy="74" r="34"/>
+        <ellipse class="sketch-line" cx="200" cy="200" rx="74" ry="95"/>
+        <path class="sketch-line" d="M200 112 L200 288"/>
+        <path class="sketch-line" d="M131 165 L92 140"/>
+        <path class="sketch-line" d="M126 205 L84 205"/>
+        <path class="sketch-line" d="M134 245 L92 270"/>
+        <path class="sketch-line" d="M269 165 L308 140"/>
+        <path class="sketch-line" d="M274 205 L316 205"/>
+        <path class="sketch-line" d="M266 245 L308 270"/>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<section>
+  <div class="board-box">
+    <svg class="sketch" viewBox="0 0 1080 460" preserveAspectRatio="none" aria-hidden="true">
+      <rect class="sketch-line" x="6" y="6" width="1068" height="448" rx="34"/>
+      <rect class="sketch-line sketch-line-echo" x="10" y="10" width="1062" height="440" rx="32"/>
+    </svg>
+    <div class="board-text">
+      <h2>Squash bugs like a craftsman</h2>
+      <p class="board-sub"><code>/diagnosing-bugs</code></p>
+    </div>
+  </div>
 </section>
 
 </div>
