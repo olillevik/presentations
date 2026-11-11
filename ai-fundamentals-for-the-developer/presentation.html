@@ -117,17 +117,7 @@
     color: var(--chalk);
     text-decoration-thickness: 2px;
     white-space: nowrap;
-  }
-
-  /* Whiteboard sketches: black ink on transparent, flipped to chalk on the black board */
-  .board-image img {
-    display: block;
-    max-width: 1000px;
-    max-height: 440px;
-    margin: 0 auto;
-    filter: invert(1);
-  }
-</style>
+  }</style>
 </head>
 <body>
 
@@ -167,8 +157,17 @@
   </div>
 </section>
 
-<section class="board-image">
-  <img src="assets/repository-settings.png" alt="Whiteboard sketch: healthy repo settings make your git operations less of a footgun, /repo-doctor">
+<section>
+  <div class="board-box">
+    <svg class="sketch" viewBox="0 0 1080 460" preserveAspectRatio="none" aria-hidden="true">
+      <rect class="sketch-line" x="6" y="6" width="1068" height="448" rx="34"/>
+      <rect class="sketch-line sketch-line-echo" x="10" y="10" width="1062" height="440" rx="32"/>
+    </svg>
+    <div class="board-text">
+      <h2>Healthy repo settings make your git operations less of a footgun</h2>
+      <p class="board-sub"><code>/repo-doctor</code></p>
+    </div>
+  </div>
 </section>
 
 <section>
@@ -184,8 +183,17 @@
   </div>
 </section>
 
-<section class="board-image">
-  <img src="assets/ci-setup.png" alt="Whiteboard sketch: a solid CI setup you can run both locally and on the CI makes it easier to create consistent quality, /ci-doctor">
+<section>
+  <div class="board-box">
+    <svg class="sketch" viewBox="0 0 1080 460" preserveAspectRatio="none" aria-hidden="true">
+      <rect class="sketch-line" x="6" y="6" width="1068" height="448" rx="34"/>
+      <rect class="sketch-line sketch-line-echo" x="10" y="10" width="1062" height="440" rx="32"/>
+    </svg>
+    <div class="board-text">
+      <h2>A solid CI set-up you can run both locally and on the CI</h2>
+      <p class="board-sub">makes it easier to create consistent quality, <code>/ci-doctor</code></p>
+    </div>
+  </div>
 </section>
 
 <section>
@@ -253,8 +261,43 @@
   </div>
 </section>
 
-<section class="board-image">
-  <img src="assets/sound-architecture.png" alt="Whiteboard sketch of the loop: issue, plan, implement, create PR, await review, squash and see it live in production; an easy to understand PR makes review simpler, /pr; humans and AIs make mistakes so alternate views help improve quality, /code-review plus human review">
+<section>
+  <div class="board-box">
+    <svg class="sketch" viewBox="0 0 1080 460" preserveAspectRatio="none" aria-hidden="true">
+      <rect class="sketch-line" x="6" y="6" width="1068" height="448" rx="34"/>
+      <rect class="sketch-line sketch-line-echo" x="10" y="10" width="1062" height="440" rx="32"/>
+    </svg>
+    <div class="board-text">
+      <h2>AIs can aid your SDLC process and the SDLC process can aid your AIs</h2>
+      <p class="board-sub">issue → plan → implement → create PR → await review → squash and see it live in production</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="board-box">
+    <svg class="sketch" viewBox="0 0 1080 460" preserveAspectRatio="none" aria-hidden="true">
+      <rect class="sketch-line" x="6" y="6" width="1068" height="448" rx="34"/>
+      <rect class="sketch-line sketch-line-echo" x="10" y="10" width="1062" height="440" rx="32"/>
+    </svg>
+    <div class="board-text">
+      <h2>An easy to understand PR makes review simpler</h2>
+      <p class="board-sub"><code>/pr</code></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="board-box">
+    <svg class="sketch" viewBox="0 0 1080 460" preserveAspectRatio="none" aria-hidden="true">
+      <rect class="sketch-line" x="6" y="6" width="1068" height="448" rx="34"/>
+      <rect class="sketch-line sketch-line-echo" x="10" y="10" width="1062" height="440" rx="32"/>
+    </svg>
+    <div class="board-text">
+      <h2>Humans and AIs make mistakes, and alternate views help improve quality</h2>
+      <p class="board-sub"><code>/code-review</code> plus human review</p>
+    </div>
+  </div>
 </section>
 
 <section>
