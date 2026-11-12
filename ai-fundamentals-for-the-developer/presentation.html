@@ -117,6 +117,35 @@
     color: var(--chalk);
     text-decoration-thickness: 2px;
     white-space: nowrap;
+  }
+
+  /* Code example slides: plain chalk code on the board */
+  .reveal pre.board-code {
+    display: inline-block;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+    overflow: visible;
+    font-size: 24px;
+    line-height: 1.25;
+    text-align: left;
+    color: var(--chalk);
+  }
+
+  .reveal pre.board-code code {
+    display: block;
+    padding: 0;
+    max-height: none;
+    overflow: visible;
+    background: none;
+    color: var(--chalk);
+    font-family: var(--font-mono);
+    font-size: 1em;
+    font-weight: 400;
+    line-height: inherit;
+    word-wrap: normal;
   }</style>
 </head>
 <body>
@@ -244,6 +273,46 @@
     <div class="board-text">
       <h2>A sound architecture</h2>
       <p class="board-sub"><code>/improve-codebase-architecture</code></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="board-box">
+    <svg class="sketch" viewBox="0 0 1080 460" preserveAspectRatio="none" aria-hidden="true">
+      <rect class="sketch-line" x="6" y="6" width="1068" height="448" rx="34"/>
+      <rect class="sketch-line sketch-line-echo" x="10" y="10" width="1062" height="440" rx="32"/>
+    </svg>
+    <div class="board-text">
+      <h2>Shallow code</h2>
+      <pre class="board-code"><code>open(path)   -> os.open(path)
+lock(f)      -> os.lock(f)
+write(f, d)  -> os.write(f, d)
+flush(f)     -> os.flush(f)
+unlock(f)    -> os.unlock(f)
+close(f)     -> os.close(f)</code></pre>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="board-box">
+    <svg class="sketch" viewBox="0 0 1080 460" preserveAspectRatio="none" aria-hidden="true">
+      <rect class="sketch-line" x="6" y="6" width="1068" height="448" rx="34"/>
+      <rect class="sketch-line sketch-line-echo" x="10" y="10" width="1062" height="440" rx="32"/>
+    </svg>
+    <div class="board-text">
+      <h2>Deep code</h2>
+      <pre class="board-code"><code>save(path, data):
+  f = os.open(path)
+  for attempt in 1..3:
+    for attempt in 1..3:
+      if os.lock(f):
+        os.write(f, data)
+        os.flush(f)
+        os.unlock(f)
+        break
+  os.close(f)</code></pre>
     </div>
   </div>
 </section>
